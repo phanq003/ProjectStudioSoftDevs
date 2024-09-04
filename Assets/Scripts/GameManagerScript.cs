@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 public class GameManagerScript : MonoBehaviour
 {
     private int playerScore;
+    public Text highScoreText;
     public Text playerScoreText;
     private int rampUpThreshold = 10;
     public Image[] health;
@@ -19,6 +20,7 @@ public class GameManagerScript : MonoBehaviour
     void Start()
     {
         healthNumber = health.Length;
+        this.changeHighScore();
     }
 
     void Update()
@@ -57,6 +59,7 @@ public class GameManagerScript : MonoBehaviour
     public void gameOver()
     {
         gameOverUI.SetActive(true);
+        this.changeHighScore();
     }
 
     public int getHealth()
@@ -86,4 +89,26 @@ public class GameManagerScript : MonoBehaviour
     {
         return rampUpThreshold;
     }
+    public void changeHighScore()
+    {
+        highScoreText.transform.position = new Vector3(1700,1040);  //would change it dynamically here
+        if (PlayerPrefs.HasKey("HighScore"))
+        {
+            if (playerScore > PlayerPrefs.GetInt("HighScore"))
+            {
+                PlayerPrefs.SetInt("HighScore", playerScore);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("HighScore", playerScore);
+        }
+        highScoreText.text = "High Score: " + PlayerPrefs.GetInt("HighScore").ToString();
+        
+
+
+        
+    }
+
+    
 }

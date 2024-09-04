@@ -13,7 +13,7 @@ public class GameManagerScript : MonoBehaviour
     private int rampUpThreshold = 10;
     public Image[] health;
     private int healthNumber;
-    public GameObject gameOverUI;
+    public GameObject[] gameOverUI;
     public CircleManagerScript circleManager;
     public CircleObjectScript circleObject;
 
@@ -63,7 +63,10 @@ public class GameManagerScript : MonoBehaviour
 
     public void gameOver()
     {
-        gameOverUI.SetActive(true);
+        foreach(GameObject ui in gameOverUI)
+        {
+            ui.SetActive(true);
+        }
         this.changeHighScore();
     }
 
@@ -74,11 +77,18 @@ public class GameManagerScript : MonoBehaviour
 
     public void rampUp()
     {
-        if (circleManager.getSpawnRate() > 0.5f)
+        if (circleManager.getSpawnRate() > 0.1f)
         {
             if (playerScore == rampUpThreshold)
             {
-                circleManager.setSpawnRate(0.5f);
+                if (circleManager.getSpawnRate() > 0.5f)
+                {
+                    circleManager.setSpawnRate(0.5f);
+                }
+                else if (circleManager.getSpawnRate() > 0.1f)
+                {
+                    circleManager.setSpawnRate(0.1f);
+                }
                 rampUpThreshold += 10;
                 Debug.Log(circleManager.getSpawnRate());
             }

@@ -9,13 +9,14 @@ public class CircleObjectScript : MonoBehaviour
     /*private float finalDuration = 2;*/
     private GameManagerScript gameManager;
     public GameObject circleParticles;
-    public Animator animator;
+    private CursorManagerScript cursorManager;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>();
         circleParticles = Instantiate(circleParticles, gameObject.transform.position, transform.rotation);
+        cursorManager = GameObject.FindGameObjectWithTag("CursorManager").GetComponent<CursorManagerScript>();
     }
 
     // Update is called once per frame
@@ -24,7 +25,6 @@ public class CircleObjectScript : MonoBehaviour
         if (duration < 2)
         {
             duration += Time.deltaTime;
-            Debug.Log(duration);
         }
         else
         {
@@ -34,10 +34,21 @@ public class CircleObjectScript : MonoBehaviour
         }
     }
 
+    void OnMouseEnter()
+    {
+        cursorManager.setCursorMalletIdle();    
+    }
+
+    void OnMouseExit()
+    {
+        cursorManager.setCursorDefault();
+    }
+
     void OnMouseDown()
     {
         ParticleSystem particle = circleParticles.GetComponent<ParticleSystem>();
 
+        cursorManager.setCursorMalletHit();
         destroyCircle();
         particle.Play();
         gameManager.addScore();

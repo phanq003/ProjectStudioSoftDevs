@@ -10,15 +10,18 @@ public class GameManagerScript : MonoBehaviour
     private int playerScore;
     public Text highScoreText;
     public Text playerScoreText;
+    public Text playerRecapText;
     private int rampUpThreshold = 10;
     public Image[] health;
     private int healthNumber;
     public GameObject[] gameOverUI;
     public CircleManagerScript circleManager;
     public CircleObjectScript circleObject;
+    private Vector3 currentScorePosition;
 
     void Start()
     {
+        currentScorePosition = transform.position;
         healthNumber = health.Length;
         this.changeHighScore();
         
@@ -37,7 +40,7 @@ public class GameManagerScript : MonoBehaviour
         if (healthNumber > 0)
         {
             playerScore++;
-            playerScoreText.text = playerScore.ToString();
+            playerScoreText.text = "Score: " +  playerScore.ToString();
             rampUp();
         }
        
@@ -54,6 +57,7 @@ public class GameManagerScript : MonoBehaviour
 
     public void restartGame()
     {
+        playerScoreText.transform.position = currentScorePosition;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void returnToGameSelect()
@@ -63,6 +67,9 @@ public class GameManagerScript : MonoBehaviour
 
     public void gameOver()
     {
+        playerRecapText.text = "Your Score was: " + playerScore.ToString() + "! \n Would you like to try again?";
+        playerRecapText.rectTransform.anchoredPosition = new Vector3(400, 300, -10);
+        playerRecapText.rectTransform.sizeDelta = new Vector2(140, 80);
         foreach(GameObject ui in gameOverUI)
         {
             ui.SetActive(true);

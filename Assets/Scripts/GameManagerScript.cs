@@ -18,7 +18,7 @@ public class GameManagerScript : MonoBehaviour
 
     void Start()
     {
-        healthNumber = health.Length;    
+        healthNumber = health.Length;
     }
 
     void Update()
@@ -71,10 +71,19 @@ public class GameManagerScript : MonoBehaviour
             if (playerScore == rampUpThreshold)
             {
                 circleManager.setSpawnRate(0.5f);
-                circleObject.setDuration(0.5f);
                 rampUpThreshold += 10;
                 Debug.Log(circleManager.getSpawnRate());
             }
         }
+    }
+
+    public int getPlayerScore()
+    {
+        return playerScore;
+    }
+
+    public int getRampUpThreshold()
+    {
+        return rampUpThreshold;
     }
 }

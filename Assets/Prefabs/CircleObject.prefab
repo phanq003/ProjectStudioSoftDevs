@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1437004968433074410}
   - component: {fileID: 4506787591029250964}
   - component: {fileID: 3772305789789659933}
+  - component: {fileID: 7266862350026965642}
   m_Layer: 0
   m_Name: CircleObject
   m_TagString: Untagged
@@ -28,9 +29,9 @@ Transform:
   m_GameObject: {fileID: 2043234436311102400}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.004, y: -0.987, z: -4.429876}
-  m_LocalScale: {x: 0.17839207, y: 0.17839207, z: 0.17839207}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -3.936399, y: -1.046602, z: -4.429876}
+  m_LocalScale: {x: 0.00016155928, y: 0.00016155928, z: 0.00016155928}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -134,3 +135,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleParticles: {fileID: 136860863197541097, guid: 6efc4b56a4eedb34ea9c111b5a360774, type: 3}
+  animator: {fileID: 7266862350026965642}
+--- !u!95 &7266862350026965642
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043234436311102400}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 11d1316040f58224d98df54549de8f59, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

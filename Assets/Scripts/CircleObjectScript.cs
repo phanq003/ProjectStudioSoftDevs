@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CircleObjectScript : MonoBehaviour
 {
     private float duration;
+    /*private float finalDuration = 2;*/
     private GameManagerScript gameManager;
     public GameObject circleParticles;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +24,7 @@ public class CircleObjectScript : MonoBehaviour
         if (duration < 2)
         {
             duration += Time.deltaTime;
+            Debug.Log(duration);
         }
         else
         {
@@ -44,13 +48,14 @@ public class CircleObjectScript : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void setDuration(float number)
+    /*public void setDuration(float number)
     {
-        duration -= number;
-    }
+        finalDuration -= number;
+        animator.speed = 1 * (2 / finalDuration);
+    }*/
 
-    public float getDuration()
+    /*public float getDuration()
     {
-        return duration;
-    }
+        return finalDuration;
+    }*/
 }

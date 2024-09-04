@@ -21,6 +21,7 @@ public class GameManagerScript : MonoBehaviour
     {
         healthNumber = health.Length;
         this.changeHighScore();
+        
     }
 
     void Update()
@@ -54,6 +55,10 @@ public class GameManagerScript : MonoBehaviour
     public void restartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void returnToGameSelect()
+    {
+        SceneManager.LoadScene("Main Menu"); //temp whil we don't have a scene for this yet
     }
 
     public void gameOver()
@@ -91,7 +96,7 @@ public class GameManagerScript : MonoBehaviour
     }
     public void changeHighScore()
     {
-        highScoreText.transform.position = new Vector3(1700,1040);  //would change it dynamically here
+        //highScoreText.transform.position = new Vector3(-89,-27);  //would change it dynamically here
         if (PlayerPrefs.HasKey("HighScore"))
         {
             if (playerScore > PlayerPrefs.GetInt("HighScore"))

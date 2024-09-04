@@ -118,7 +118,7 @@ public class GameManagerScript : MonoBehaviour
         {
             PlayerPrefs.SetInt("HighScore", playerScore);
         }
-        highScoreText.text = "High Score: " + PlayerPrefs.GetInt("HighScore").ToString();
+        highScoreText.text = PlayerPrefs.GetInt("HighScore").ToString();
         
 
 

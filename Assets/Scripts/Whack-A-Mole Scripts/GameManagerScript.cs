@@ -67,7 +67,7 @@ public class GameManagerScript : MonoBehaviour
     }
     public void returnToGameSelect()
     {
-        SceneManager.LoadScene("Main Menu"); //temp whil we don't have a scene for this yet
+        SceneManager.LoadScene("GameSelectScene"); //temp whil we don't have a scene for this yet
     }
 
     public void gameOver()

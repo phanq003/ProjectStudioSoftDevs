@@ -10,6 +10,11 @@ public class PreGameInstructScript : MonoBehaviour
     public void playGame()
     {
         Debug.Log("the button is being pressed");
+        SceneManager.LoadScene("Whack-A-Mole");
+    }
+
+    public void BackToSelection()
+    {
         SceneManager.LoadScene("GameSelectScene");
     }
 }

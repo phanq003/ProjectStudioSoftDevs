@@ -7,17 +7,12 @@ public class ChangeGamesScript : MonoBehaviour
 {
     public GameObject[] miniGames;
     public int currentGame = 0;
-
     public GameObject selectedGame; //Stores game to pass to popup
-
-public GameObject popup;
+    public GameObject popup;
     public PopupControl popupControl;
-
     public Vector3 gamePosLeft = new Vector3(-3.6f, 0, 0);
     public Vector3 gamePosCentre = new Vector3(0, 0, 0);
     public Vector3 gamePosRight = new Vector3(3.6f, 0, 0);
-    
-
 
     void Awake() 
     {

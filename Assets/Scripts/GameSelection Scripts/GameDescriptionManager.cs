@@ -50,7 +50,7 @@ public class GameDescriptionManager : MonoBehaviour
         int buttonScaleWidth = width /2;
         RectTransform ButtonRect = playButton.GetComponent<RectTransform>();
         ButtonRect.sizeDelta =  new Vector2(buttonScaleWidth, buttonScaleHeight);
-        ButtonRect.position = mainCamera.ScreenToWorldPoint(new Vector3(width/2, height/2 - 400, mainCamera.nearClipPlane));
+       /* ButtonRect.position = mainCamera.ScreenToWorldPoint(new Vector3(width/2, height/2 - 400, mainCamera.nearClipPlane));*/
         Text PlayGame = playButton.GetComponentInChildren<Text>();
         PlayGame.fontSize = buttonScaleHeight / 4;
 
@@ -70,7 +70,7 @@ public class GameDescriptionManager : MonoBehaviour
         exitInstructions();
         Destroy(gameObject);
         Debug.Log("Will delete");
-        SceneManager.LoadScene("Instructions");
+        SceneManager.LoadScene("PreGameInstruct");
         //enable the instructions
 
         //if instructions goes to a new scene write the following code 

@@ -10,6 +10,7 @@ public class ChangeGamesScript : MonoBehaviour
 
     public GameObject selectedGame; //Stores game to pass to popup
 
+public GameObject popup;
     public PopupControl popupControl;
 
     public Vector3 gamePosLeft = new Vector3(-3.6f, 0, 0);
@@ -18,11 +19,18 @@ public class ChangeGamesScript : MonoBehaviour
     
 
 
-    void Start() 
+    void Awake() 
     {
-        popupControl = GameObject.FindGameObjectWithTag("PopupController").GetComponent<PopupControl>();
-
+        Debug.Log("STARTS");
+        popup = GameObject.FindGameObjectWithTag("PopupController");
+        popupControl = popup.GetComponent<PopupControl>();
+        Debug.Log("START" + popupControl.name);
+        
         displayGames();
+    }
+    void Start()
+    {
+        popup.SetActive(false);
     }
     public void nextGame(){
         currentGame = (currentGame + 1) % miniGames.Length; //Modulo allows for it to loop back to 0 once limit reached
@@ -48,6 +56,7 @@ public class ChangeGamesScript : MonoBehaviour
     }
 
     private void showPopup(){
+        Debug.Log(popupControl.name);
         popupControl.setSelectedGame(selectedGame);
         popupControl.showPopup();
     }

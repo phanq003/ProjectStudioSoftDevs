@@ -20,7 +20,7 @@ public class GameDescriptionManager : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;   
-        setUpImage();
+        //setUpImage();
         Debug.Log("Start");
     }
 

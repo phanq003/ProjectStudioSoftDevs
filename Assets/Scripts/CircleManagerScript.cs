@@ -27,7 +27,7 @@ public class CircleManagerScript : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
-        else if (gameManager.getHealth() > 0)
+        else if (gameManager.getHealth() > 0 && gameManager.getTimeRemaining() > 0)
         {
             spawnCircle();
             timer = 0;

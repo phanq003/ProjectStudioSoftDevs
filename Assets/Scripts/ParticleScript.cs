@@ -5,6 +5,7 @@ using UnityEngine;
 public class ParticleScript : MonoBehaviour
 {
     private float duration;
+    private float MaxDuration = 2f;
     
     // Start is called before the first frame update
     void Start()
@@ -15,7 +16,7 @@ public class ParticleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (duration < 5)
+        if (duration < MaxDuration)
         {
             duration += Time.deltaTime;
         }

@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class MoleManagerScript : MonoBehaviour
 {
-    public GameObject circle;
-    private float spawnRate = 3;
     public Camera mainCamera;
     public GameObject mole;
     private float spawnRate = 2;

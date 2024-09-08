@@ -6,15 +6,15 @@ using UnityEngine;
 public class MoleObjectScript : MonoBehaviour
 {
     private float duration;
-    /*private float finalDuration = 2;*/
     private GameManagerScript gameManager;
+    public GameObject moleHit;
     private CursorManagerScript cursorManager;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>();
-        circleParticles = Instantiate(circleParticles, gameObject.transform.position, transform.rotation);
+        moleHit = Instantiate(moleHit, gameObject.transform.position, transform.rotation);
         cursorManager = GameObject.FindGameObjectWithTag("CursorManager").GetComponent<CursorManagerScript>();
     }
 
@@ -45,11 +45,15 @@ public class MoleObjectScript : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (!gameManager.gamePaused())
+        {
+            cursorManager.setCursorMalletHit();
+            destroyMole();
+            moleHit.SetActive(true);
+            gameManager.addScore();
+        }
 
-        cursorManager.setCursorMalletHit();
-        destroyCircle();
-        particle.Play();
-        gameManager.addScore();
+        
     }
 
     public void destroyMole()

@@ -12,7 +12,13 @@ public class GameManagerScript : MonoBehaviour
     private int rampUpThreshold = 5;
     private int RampUpThresholdIntervals = 5;
     private int healthNumber;
+    public MoleManagerScript moleManager;
+    [SerializeField] private float MaxTime = 60f;
     private float timeRemaining;
+    [SerializeField] private GameObject[] moleHoles;
+    private List<GameObject> activeHoles = new List<GameObject>();
+    [SerializeField] private int StartingHoles = 3;
+    private int SetAllHolesActiveByPlayerScore = 20;
     private float StartRampThreshold = 0.5f;
     private float StartRampThresholdSpawnRateReduction = 0.5f;
     private float FinalRampThreshold = 1.0f;
@@ -23,6 +29,14 @@ public class GameManagerScript : MonoBehaviour
         healthNumber = gameUI.getHealth().Length;
         timeRemaining = MaxTime;
         
+        setStartActiveHoles();
+
+        foreach (GameObject hole in activeHoles)
+        {
+            HoleScript holeScript = hole.GetComponent<HoleScript>();
+            hole.SetActive(true);
+            holeScript.playEntryAnimation();
+        }
     }
 
     void Update()
@@ -68,17 +82,53 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
+    public void setStartActiveHoles()
     {
-    }
-    {
-    }
-
-    {
+        while (activeHoles.Count < StartingHoles)
         {
-        }
+            int randomHole = Random.Range(0, moleHoles.Length);
+
+            if (!activeHoles.Contains(moleHoles[randomHole]))
+            {
+                activeHoles.Add(moleHoles[randomHole]);
+            }
+        }   
     }
 
+    public void setAllHolesActive()
     {
+        foreach (GameObject hole in moleHoles)
+        {
+            if (!activeHoles.Contains(hole))
+            {
+                activeHoles.Add(hole);
+                HoleScript holeScript = hole.GetComponent<HoleScript>();
+                hole.gameObject.SetActive(true);
+                holeScript.playEntryAnimation();
+            }
+        }
+        moleManager.allHolesActiveDelay();
+    }
+
+    public HoleScript selectHole()
+    {
+        List<GameObject> activeHoles = getActiveHoles();
+        int randomHole = Random.Range(0, activeHoles.Count);
+        HoleScript holeScript = activeHoles[randomHole].GetComponent<HoleScript>();
+
+        while (holeScript.isCurrentlyOccupied())
+        {
+            randomHole = Random.Range(0, activeHoles.Count);
+            holeScript = activeHoles[randomHole].GetComponent<HoleScript>();
+        }
+        holeScript.setOccupied();
+
+        return holeScript;
+    }
+
+    public List<GameObject> getActiveHoles()
+    {
+        return activeHoles; 
     }
 
     public void rampUp()
@@ -97,6 +147,11 @@ public class GameManagerScript : MonoBehaviour
                 }
                 rampUpThreshold += RampUpThresholdIntervals;
             }
+        }
+
+        if (playerScore == SetAllHolesActiveByPlayerScore) 
+        {
+            setAllHolesActive();
         }
     }
 

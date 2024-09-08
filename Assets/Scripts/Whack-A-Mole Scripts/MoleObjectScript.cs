@@ -8,7 +8,6 @@ public class MoleObjectScript : MonoBehaviour
     private float duration;
     /*private float finalDuration = 2;*/
     private GameManagerScript gameManager;
-    public GameObject circleParticles;
     private CursorManagerScript cursorManager;
 
     // Start is called before the first frame update
@@ -22,13 +21,13 @@ public class MoleObjectScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (duration < 2)
+        if (duration < 1.2)
         {
             duration += Time.deltaTime;
         }
         else
         {
-            destroyCircle();
+            destroyMole();
             gameManager.loseHealth();
             duration = 0;
         }
@@ -46,7 +45,6 @@ public class MoleObjectScript : MonoBehaviour
 
     void OnMouseDown()
     {
-        ParticleSystem particle = circleParticles.GetComponent<ParticleSystem>();
 
         cursorManager.setCursorMalletHit();
         destroyCircle();
@@ -54,19 +52,8 @@ public class MoleObjectScript : MonoBehaviour
         gameManager.addScore();
     }
 
-    public void destroyCircle()
+    public void destroyMole()
     {
         Destroy(gameObject);
     }
-
-    /*public void setDuration(float number)
-    {
-        finalDuration -= number;
-        animator.speed = 1 * (2 / finalDuration);
-    }*/
-
-    /*public float getDuration()
-    {
-        return finalDuration;
-    }*/
 }

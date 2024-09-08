@@ -13,6 +13,7 @@ public class MoleManagerScript : MonoBehaviour
     /*public Transform canvas;*/
     private GameManagerScript gameManager;
     public GameObject circleParticles;
+    private List<GameObject> activeHoles;
 
     // Start is called before the first frame update
     void Start()
@@ -28,13 +29,14 @@ public class MoleManagerScript : MonoBehaviour
             timer += Time.deltaTime;
         }
         else if (gameManager.getHealth() > 0 && gameManager.getTimeRemaining() > 0)
+        else if (gameManager.getHealthNumber() > 0 && gameManager.getTimeRemaining() > 0)
         {
-            spawnCircle();
+            spawnMole();
             timer = 0;
         }
     }
 
-    public void spawnCircle()
+    public void spawnMole()
     {
         float maxHeight = transform.position.y + heightOffset;
         float minHeight = transform.position.y - heightOffset;
@@ -58,4 +60,8 @@ public class MoleManagerScript : MonoBehaviour
         return spawnRate;
     }
 
+    public void allHolesActiveDelay()
+    {
+        timer = -2;
+    }
 }

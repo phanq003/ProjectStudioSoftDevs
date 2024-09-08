@@ -9,8 +9,14 @@ public class GameManagerScript : MonoBehaviour
 {
     [SerializeField] private GameUIScript gameUI;
     private int playerScore;
+    private int rampUpThreshold = 5;
+    private int RampUpThresholdIntervals = 5;
     private int healthNumber;
     private float timeRemaining;
+    private float StartRampThreshold = 0.5f;
+    private float StartRampThresholdSpawnRateReduction = 0.5f;
+    private float FinalRampThreshold = 1.0f;
+    private float FinalRampThresholdSpawnRateReduction = 0.2f;
 
     void Start()
     {
@@ -77,20 +83,19 @@ public class GameManagerScript : MonoBehaviour
 
     public void rampUp()
     {
-        if (circleManager.getSpawnRate() > 0.1f)
+        if (moleManager.getSpawnRate() > StartRampThreshold)
         {
             if (playerScore == rampUpThreshold)
             {
-                if (circleManager.getSpawnRate() > 0.5f)
+                if (moleManager.getSpawnRate() > FinalRampThreshold)
                 {
-                    circleManager.setSpawnRate(0.5f);
+                    moleManager.setSpawnRate(StartRampThresholdSpawnRateReduction);
                 }
-                else if (circleManager.getSpawnRate() > 0.1f)
+                else
                 {
-                    circleManager.setSpawnRate(0.1f);
+                    moleManager.setSpawnRate(FinalRampThresholdSpawnRateReduction);
                 }
-                rampUpThreshold += 10;
-                Debug.Log(circleManager.getSpawnRate());
+                rampUpThreshold += RampUpThresholdIntervals;
             }
         }
     }

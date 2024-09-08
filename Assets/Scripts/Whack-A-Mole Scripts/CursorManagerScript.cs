@@ -8,12 +8,12 @@ public class CursorManagerScript : MonoBehaviour
 
     public void setCursorMalletIdle()
     {
-        Cursor.SetCursor(cursorTexture[0], new Vector2(cursorTexture[0].width / 2, cursorTexture[0].height / 2), CursorMode.Auto);
+        Cursor.SetCursor(cursorTexture[0], new Vector2(cursorTexture[0].width / 2, cursorTexture[0].height / 2), CursorMode.ForceSoftware);
     }
 
     public void setCursorMalletHit()
     {
-        Cursor.SetCursor(cursorTexture[1], new Vector2(cursorTexture[1].width / 2, cursorTexture[1].height / 2), CursorMode.Auto);
+        Cursor.SetCursor(cursorTexture[1], new Vector2(cursorTexture[1].width / 2, cursorTexture[1].height / 2), CursorMode.ForceSoftware);
     }
 
     public void setCursorDefault()

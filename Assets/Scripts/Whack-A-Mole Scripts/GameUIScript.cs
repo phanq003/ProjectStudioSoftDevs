@@ -11,12 +11,16 @@ public class GameUIScript : MonoBehaviour
     public Button[] interfaceButtons;
     public Text highScoreText;
     public Text playerScoreText;
+    public Text resultScore;
+    public Text resultComment;
     public Image[] health;
     public GameObject pauseButton;
     public GameObject[] pauseGameUI;
     public GameObject[] gameOverUI;
     public Image radialTimerImage;
     private float durationButtonDelay = 2;
+    private string highScoreBeatenComment = "You beaten the High Score!";
+    private string regularResultComment = "Awesome! You did great!";
     public CursorManagerScript cursorManager;
 
     // Start is called before the first frame update
@@ -70,6 +74,9 @@ public class GameUIScript : MonoBehaviour
     {
         cursorManager.setCursorDefault();
         pauseButton.SetActive(false);
+        resultScore.text = playerScoreText.text;
+        bool commentResult = updateHighScore();
+        generateResultComment(commentResult);
 
         foreach (GameObject ui in gameOverUI)
         {
@@ -92,6 +99,7 @@ public class GameUIScript : MonoBehaviour
         cursorManager.setCursorDefault();
         Time.timeScale = 0f;
         gameManager.setGamePaused(true);
+        resultScore.text = playerScoreText.text;
 
         foreach (GameObject ui in pauseGameUI)
         {
@@ -141,4 +149,17 @@ public class GameUIScript : MonoBehaviour
         return false;
     }
 
+    public void generateResultComment(bool result)
+    {
+        Debug.Log(result);
+        
+        if (result)
+        {
+            resultComment.text = highScoreBeatenComment;
+        }
+       else
+        {
+            resultComment.text = regularResultComment;
+        }
+    }
 }

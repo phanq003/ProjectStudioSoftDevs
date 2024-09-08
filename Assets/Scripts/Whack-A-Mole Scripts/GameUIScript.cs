@@ -8,15 +8,24 @@ using UnityEngine.UI;
 public class GameUIScript : MonoBehaviour
 {
     [SerializeField] private GameManagerScript gameManager;
+    public Button[] interfaceButtons;
     public Text highScoreText;
     public Text playerScoreText;
     public Image[] health;
+    public GameObject pauseButton;
+    public GameObject[] pauseGameUI;
     public GameObject[] gameOverUI;
     public Image radialTimerImage;
+    private float durationButtonDelay = 2;
+    public CursorManagerScript cursorManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        foreach (Button button in interfaceButtons)
+        {
+            button.enabled = false;
+        }
 
         updateHighScore();
     }
@@ -24,6 +33,17 @@ public class GameUIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameManager.getTimeRemaining() <= 0 || gameManager.getHealthNumber() <= 0)
+        {
+            if (durationButtonDelay > 0)
+            {
+                durationButtonDelay -= Time.deltaTime;
+            }
+            else
+            {
+                enableInterfaceButtons();
+            }
+        }
     }
 
     public void updateTimer(float timeRemaining)
@@ -48,6 +68,8 @@ public class GameUIScript : MonoBehaviour
 
     public void gameOver()
     {
+        cursorManager.setCursorDefault();
+        pauseButton.SetActive(false);
 
         foreach (GameObject ui in gameOverUI)
         {
@@ -57,16 +79,46 @@ public class GameUIScript : MonoBehaviour
 
     }
 
+    public void enableInterfaceButtons()
+    {
+        foreach (Button button in interfaceButtons)
+        {
+            button.enabled = true;
+        }
+    }
 
+    public void pauseGame()
+    {
+        cursorManager.setCursorDefault();
+        Time.timeScale = 0f;
+        gameManager.setGamePaused(true);
 
+        foreach (GameObject ui in pauseGameUI)
+        {
+            ui.SetActive(true);
+        }
+    }
+
+    public void resumeGame()
+    {
+        Time.timeScale = 1.0f;
+        gameManager.setGamePaused(false);
+
+        foreach (GameObject ui in pauseGameUI)
+        {
+            ui.SetActive(false);
+        }
+    }
 
     public void restartGame()
     {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void returnToGameSelect()
     {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("GameSelectScene"); //temp whil we don't have a scene for this yet
     }
 

@@ -23,9 +23,13 @@ public class GameManagerScript : MonoBehaviour
     private float StartRampThresholdSpawnRateReduction = 0.5f;
     private float FinalRampThreshold = 1.0f;
     private float FinalRampThresholdSpawnRateReduction = 0.2f;
+    private bool isPaused;
+    private bool gameOverOnce;
 
     void Start()
     {
+        isPaused = false;
+        gameOverOnce = true;
         healthNumber = gameUI.getHealth().Length;
         timeRemaining = MaxTime;
         
@@ -46,9 +50,10 @@ public class GameManagerScript : MonoBehaviour
             timeRemaining -= Time.deltaTime;
             gameUI.updateTimer(timeRemaining / MaxTime);
         }
-        else
+        else if (gameOverOnce)
         {
-            gameOver();
+            gameUI.gameOver();
+            gameOverOnce = false;
         }
     }
 
@@ -165,6 +170,13 @@ public class GameManagerScript : MonoBehaviour
         return rampUpThreshold;
     }
 
+    public bool gamePaused()
     {
+        return isPaused;
+    }    
     
+    public void setGamePaused(bool paused)
+    {
+        isPaused = paused;
+    }
 }

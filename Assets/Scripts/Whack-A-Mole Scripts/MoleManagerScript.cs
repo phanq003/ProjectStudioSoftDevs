@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CircleManagerScript : MonoBehaviour
+public class MoleManagerScript : MonoBehaviour
 {
     public GameObject circle;
     private float spawnRate = 3;

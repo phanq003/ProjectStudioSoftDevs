@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CircleObjectScript : MonoBehaviour
+public class MoleObjectScript : MonoBehaviour
 {
     private float duration;
     /*private float finalDuration = 2;*/

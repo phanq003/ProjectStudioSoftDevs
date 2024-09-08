@@ -7,12 +7,11 @@ public class MoleManagerScript : MonoBehaviour
 {
     public GameObject circle;
     private float spawnRate = 3;
+    public Camera mainCamera;
+    public GameObject mole;
+    private float spawnRate = 2;
     private float timer = 0;
-    private float widthOffset = 7.5f;
-    private float heightOffset = 3;
-    /*public Transform canvas;*/
     private GameManagerScript gameManager;
-    public GameObject circleParticles;
     private List<GameObject> activeHoles;
 
     // Start is called before the first frame update
@@ -28,7 +27,6 @@ public class MoleManagerScript : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
-        else if (gameManager.getHealth() > 0 && gameManager.getTimeRemaining() > 0)
         else if (gameManager.getHealthNumber() > 0 && gameManager.getTimeRemaining() > 0)
         {
             spawnMole();
@@ -38,15 +36,10 @@ public class MoleManagerScript : MonoBehaviour
 
     public void spawnMole()
     {
-        float maxHeight = transform.position.y + heightOffset;
-        float minHeight = transform.position.y - heightOffset;
-        float minWidth = transform.position.x - widthOffset;
-        float maxWidth = transform.position.x + widthOffset;
+        Vector2 screenPostion = RectTransformUtility.WorldToScreenPoint(mainCamera, gameManager.selectHole().getPosition());
+        Vector3 worldPosition = mainCamera.ScreenToWorldPoint(new Vector3(screenPostion.x, screenPostion.y, mainCamera.nearClipPlane));
 
-        float randomHeight = Random.Range(minHeight, maxHeight);
-        float randomWidth = Random.Range(minWidth, maxWidth);
-
-        Instantiate(circle, new Vector3(randomWidth, randomHeight, 0), transform.rotation);
+        Instantiate(mole, new Vector3(worldPosition.x + 0.24748f, worldPosition.y + 0.43783f, 89), transform.rotation);
 
     }
 

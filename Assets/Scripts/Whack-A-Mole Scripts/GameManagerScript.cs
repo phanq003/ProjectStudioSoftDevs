@@ -7,23 +7,14 @@ using Unity.VisualScripting;
 
 public class GameManagerScript : MonoBehaviour
 {
+    [SerializeField] private GameUIScript gameUI;
     private int playerScore;
-    public Text highScoreText;
-    public Text playerScoreText;
-    private int rampUpThreshold = 10;
-    public Image[] health;
     private int healthNumber;
-    public GameObject[] gameOverUI;
-    public CircleManagerScript circleManager;
-    public CircleObjectScript circleObject;
-    public Image radialTimerImage;
-    [SerializeField] private float MaxTime = 150f;
     private float timeRemaining;
 
     void Start()
     {
-        healthNumber = health.Length;
-        this.changeHighScore();
+        healthNumber = gameUI.getHealth().Length;
         timeRemaining = MaxTime;
         
     }
@@ -33,7 +24,7 @@ public class GameManagerScript : MonoBehaviour
         if (timeRemaining > 0 && healthNumber > 0)
         {
             timeRemaining -= Time.deltaTime;
-            radialTimerImage.fillAmount = timeRemaining / MaxTime;
+            gameUI.updateTimer(timeRemaining / MaxTime);
         }
         else
         {
@@ -41,12 +32,22 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
+    public int getHealthNumber() 
+    {
+        return healthNumber;
+    }
+
+    public float getTimeRemaining() 
+    {
+        return timeRemaining;
+    }
+
     public void addScore()
     {
         if (healthNumber > 0 && timeRemaining > 0)
         {
             playerScore++;
-            playerScoreText.text = playerScore.ToString();
+            gameUI.updateScore(playerScore);
             rampUp();
         }
        
@@ -57,31 +58,21 @@ public class GameManagerScript : MonoBehaviour
         if (healthNumber > 0)
         {
             healthNumber--;
-            health[healthNumber].color = Color.black;
+            gameUI.updateHealth(healthNumber);
         }
     }
 
-    public void restartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    public void returnToGameSelect()
     {
-        SceneManager.LoadScene("GameSelectScene"); //temp whil we don't have a scene for this yet
     }
 
-    public void gameOver()
     {
-        foreach(GameObject ui in gameOverUI)
         {
-            ui.SetActive(true);
         }
-        this.changeHighScore();
     }
 
-    public int getHealth()
     {
-        return healthNumber;
     }
 
     public void rampUp()
@@ -113,31 +104,7 @@ public class GameManagerScript : MonoBehaviour
     {
         return rampUpThreshold;
     }
-    public void changeHighScore()
+
     {
-        //highScoreText.transform.position = new Vector3(-89,-27);  //would change it dynamically here
-        if (PlayerPrefs.HasKey("HighScore"))
-        {
-            if (playerScore > PlayerPrefs.GetInt("HighScore"))
-            {
-                PlayerPrefs.SetInt("HighScore", playerScore);
-            }
-        }
-        else
-        {
-            PlayerPrefs.SetInt("HighScore", playerScore);
-        }
-        highScoreText.text = PlayerPrefs.GetInt("HighScore").ToString();
-        
-
-
-        
-    }
-
-    public float getTimeRemaining()
-    {
-        return timeRemaining;
-    }
-
     
 }

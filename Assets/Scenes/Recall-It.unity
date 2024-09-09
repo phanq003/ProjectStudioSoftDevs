@@ -162,8 +162,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 575828435}
+  - component: {fileID: 575828436}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: RecallGameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -184,6 +185,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &575828436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575828434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d507e848b7da3147a94770e1da47a3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameRounds: 5
 --- !u!1 &797906867
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +290,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1182224124
+--- !u!1 &1135264745
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -284,29 +298,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1182224125}
+  - component: {fileID: 1135264746}
+  - component: {fileID: 1135264747}
   m_Layer: 0
-  m_Name: ShapeObject
+  m_Name: PositionManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1182224125
+--- !u!4 &1135264746
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1182224124}
+  m_GameObject: {fileID: 1135264745}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.7627711, y: 0.68346447, z: -8.57205}
+  m_LocalPosition: {x: 3.2535431, y: 0.12945855, z: -8.619955}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1135264747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135264745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4cd68e5f635d2c40a1034a1177bb4da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positions:
+  - {x: -5.8, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 5.8, y: 0, z: 0}
 --- !u!1 &1640895338
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +347,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1640895339}
+  - component: {fileID: 1640895340}
   m_Layer: 0
   m_Name: ShapeManager
   m_TagString: Untagged
@@ -338,6 +370,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1640895340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640895338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31936d9cbf905a74cb0f800c1a453a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allShapes:
+  - {fileID: 194125283997920830, guid: 3c78117bbefe13f4997176635673b0d5, type: 3}
+  - {fileID: 1737628215201327216, guid: bfebb2f802736a741869ba16b2753602, type: 3}
+  - {fileID: 4946323618258557056, guid: 7bcbe0eacee45f245a5aab207240bfe0, type: 3}
+  - {fileID: 6603342892386435302, guid: 028d0297162d48842a6935d7d5f23993, type: 3}
+  - {fileID: 2272899555843286652, guid: 838c9a8449130f44298b6560bbbe21df, type: 3}
+  - {fileID: 7392990937690677465, guid: 30740ea493ccb9b4a9c4e24a209d5be5, type: 3}
+  - {fileID: 3481007632621169447, guid: 7ffd882c4a403f54d8de1665134d4999, type: 3}
+  - {fileID: 8088607555274683138, guid: 5611f4e042d849c4283babe80a6539cd, type: 3}
+  - {fileID: 5742583317839228049, guid: eb0ed4487ab85bc499d629ef0ea4f3c1, type: 3}
+  initialStartRecall: 3
+  positionManager: {fileID: 1135264747}
+  recallDelay: 3
+  hideDelay: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -346,4 +404,4 @@ SceneRoots:
   - {fileID: 575828435}
   - {fileID: 395874911}
   - {fileID: 1640895339}
-  - {fileID: 1182224125}
+  - {fileID: 1135264746}

@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class TriangleScript : ShapeScript
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        
+        if (duration < hideDelay)
+        {
+            duration += Time.deltaTime;
+        }
+        else if (!isHidden)
+        {
+            gameObject.SetActive(false);
+            isHidden = true;
+        }
     }
 }

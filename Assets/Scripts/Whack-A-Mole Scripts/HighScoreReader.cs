@@ -45,7 +45,7 @@ public class HighScoreReader : MonoBehaviour
             if (count != 0)
             {
                 tenPlayerList = new List<HighScorePlayer>();
-                HighScorePlayerList.Distinct().OrderByDescending(sc => sc.score).ToList();
+                HighScorePlayerList = HighScorePlayerList.Distinct().OrderByDescending(sc => sc.score).ToList();
                 foreach (HighScorePlayer thePlayers in HighScorePlayerList)
                 {
                     if (count > numOfPlayers)

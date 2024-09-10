@@ -4,13 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.ComponentModel;
+using System.Linq;
 
 public class LogicScript : MonoBehaviour
 {
     public static LogicScript Instance;
+    public static int numOfHoles = 2;
     //public int strokeCount;
     public Text strokeText;
     public ScoreSO scoreValue;
+    public List<int> playerHoleValue = new List<int>(numOfHoles);
+    public UIManager TheUIManager;
+    public int previousHoleScore;
 
     void OnEnable()
     {
@@ -21,12 +26,14 @@ public class LogicScript : MonoBehaviour
         if (scene.name == "Hole1")
         {
             scoreValue.Score = 0;
+            scoreValue.PreviousHoleScore = 0;
         }
         updateScore();
         
     }
     public void Awake()
     {
+        playerHoleValue.Add(scoreValue.Score);
         if (Instance ==  null)
         {
             Instance = this;
@@ -41,6 +48,7 @@ public class LogicScript : MonoBehaviour
     public void Start()
     {
         updateScore();
+        Debug.Log(TheUIManager);
     }
 
     [ContextMenu("Add Stroke")]
@@ -62,7 +70,15 @@ public class LogicScript : MonoBehaviour
 
     public void loadHole(string levelName)
     {
-        SceneManager.LoadScene(levelName);
+        int scoreThisRound = scoreValue.Score - previousHoleScore;
+        playerHoleValue.Add(scoreThisRound);
+        Debug.Log(TheUIManager);
+        TheUIManager.calculateShots(scoreThisRound);
+        previousHoleScore = scoreValue.Score;
+        scoreValue.PreviousHoleScore = previousHoleScore;
+        scoreValue.PlayerScores = playerHoleValue;
+        TheUIManager.nextMap(levelName);
+        //SceneManager.LoadScene(levelName);
     }
 
 }

@@ -1941,7 +1941,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 39
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 77
@@ -2147,6 +2147,7 @@ MonoBehaviour:
   currentScoreText: {fileID: 1187240575}
   HighScoreMenu: {fileID: 1384148966}
   LeaderboardPrefab: {fileID: 582741498}
+  parent: {fileID: 1384148967}
   playerList:
     HighScorePlayerList: []
 --- !u!4 &974238270
@@ -2873,7 +2874,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 69
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 78
@@ -4165,7 +4166,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 20
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 2
     m_MaxSize: 40

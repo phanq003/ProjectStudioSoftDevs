@@ -18,6 +18,7 @@ public class HighScoreReader : MonoBehaviour
 
     public GameObject HighScoreMenu;
     public GameObject LeaderboardPrefab;
+    public Transform parent;
     
     [System.Serializable]
     public class HighScorePlayer
@@ -39,14 +40,6 @@ public class HighScoreReader : MonoBehaviour
 
         public void limitPlayersToTen()
         {
-            try
-            {
-                Debug.Log(HighScorePlayerList.Count());
-            }
-            catch
-            {
-
-            }
             int count = HighScorePlayerList.Count();
             Debug.Log("count" + count);
             if (count != 0)
@@ -58,7 +51,7 @@ public class HighScoreReader : MonoBehaviour
                     if (count > numOfPlayers)
                     {
                         bool hasAppend = false;
-                        while (tenPlayerList.Count() < 10 || hasAppend == false)
+                        while (tenPlayerList.Count() < 10 && hasAppend == false)
                         {
                             tenPlayerList.Add(thePlayers);
                             hasAppend = true;
@@ -84,9 +77,18 @@ public class HighScoreReader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        string path = Application.dataPath + "/scoreWack.text";
         try
         {
-            playerList = JsonUtility.FromJson<HighScoreList>(Application.dataPath + "/scoreWack.text");
+            string[] lines = File.ReadAllLines(path);
+           
+            foreach (string line in lines)
+            {
+                string[] content = line.Split();
+                HighScorePlayer newPlayer = new HighScorePlayer(content[0], int.Parse(content[1]));
+                playerList.HighScorePlayerList.Add(newPlayer); 
+            }
+            //playerList = JsonUtility.FromJson<HighScoreList>(Application.dataPath + "/scoreWack.text");
         }
         catch {
             writeToList();
@@ -104,29 +106,36 @@ public class HighScoreReader : MonoBehaviour
     {
         print("WriteTOList" + playerList.getPlayerList().ToString());
         print(playerList.getPlayerList().Count() + "HJDASKHSDADJLSJKDKSADJDLKSLKDJSALKDJAYOOOOO");
-        string jsonFileString = JsonUtility.ToJson(playerList.getPlayerList());
-        File.WriteAllText(Application.dataPath + "/scoreWack.text", jsonFileString);
+        string path = Application.dataPath + "/scoreWack.text";
+        StreamWriter writer = new StreamWriter(path, false);
+        foreach (HighScorePlayer player in playerList.getPlayerList())
+        { 
+            string filedata = player.playerName + " " + player.score.ToString();
+            writer.WriteLine(filedata);
+        }
+        writer.Close();
     }
     public void saveScore()
     {
-        print("saved" + playerInput.text + currentScoreText.text);
         HighScorePlayer newPlayer = new HighScorePlayer(playerInput.text, int.Parse(currentScoreText.text));
         playerList.HighScorePlayerList.Add(newPlayer);
-        print(playerList.HighScorePlayerList.Count() + "SAKJDKDJLSAKDKJLSJALKD");
         playerList.limitPlayersToTen();
         this.writeToList();
     }
     public void displayList()
     {
+        playerList.limitPlayersToTen();
         if (playerList.getPlayerList().Count() != 0)
         {
             float offset = 0f;
+            Debug.Log("1it has been printed");
             int cycle = 1;
             foreach (HighScorePlayer thePlayers in playerList.getPlayerList())
             {
+                Debug.Log("it has been printed");
                 string theName = thePlayers.playerName;
                 string theScore = thePlayers.score.ToString();
-                GameObject tempLeaderboard = Instantiate(LeaderboardPrefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + offset, gameObject.transform.position.z), Quaternion.identity);
+                GameObject tempLeaderboard = Instantiate(LeaderboardPrefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + offset, gameObject.transform.position.z), Quaternion.identity, parent);
                 offset -= 0.66f;
                 Text[] text = tempLeaderboard.GetComponentsInChildren<Text>();
                 text[0].text = "#" + cycle;

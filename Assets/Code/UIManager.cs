@@ -11,6 +11,10 @@ public class UIManager : MonoBehaviour
     public Text[] EndingText; 
     public ScoreSO ScoreManager;
     public GameObject RoundSummary;
+
+    public GameObject Results;
+    public Text ResultText;
+
     private string nextScene;
 
     public static UIManager Instance;
@@ -28,11 +32,19 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         RoundSummary.SetActive(false);
 
     }
     public void Awake()
     {
+        Results = GameObject.FindGameObjectWithTag("Results");
+        if (Results != null)
+        {
+            Debug.Log("WHAT?");
+            ResultText = GameObject.FindGameObjectWithTag("ResultText").GetComponent<Text>();
+            Results.SetActive(false);
+        }
         if (Instance == null)
         {
             Instance = this;
@@ -73,6 +85,26 @@ public class UIManager : MonoBehaviour
         EndingText[2].text = hole;
         EndingText[0].text = "You did it! You earnt a " + determineScoreRank(scoreOnHole) + " for this hole!";
 
+    }
+    public void displayResults()
+    {
+        string newText = "";
+        int counter = 0;
+        List<int> theScores = ScoreManager.PlayerScores;
+        foreach (int score in theScores)
+        {
+            newText += counter.ToString() + " " + score.ToString() + " | ";
+        }
+        Results.SetActive(true);
+
+        ResultText.text = newText;
+
+
+    }
+    public void exitResults()
+    {
+        Results.SetActive(false);
+        //go back to game select
     }
 
     private string determineScoreRank(int score)

@@ -80,5 +80,9 @@ public class LogicScript : MonoBehaviour
         TheUIManager.nextMap(levelName);
         //SceneManager.LoadScene(levelName);
     }
+    public void loadEnding()
+    {
+        TheUIManager.displayResults();
+    }
 
 }

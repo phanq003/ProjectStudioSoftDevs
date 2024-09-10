@@ -15,7 +15,7 @@ public class Hole : MonoBehaviour
         if (other.CompareTag("Ball"))
         {
             other.gameObject.SetActive(false);
-            logic.loadHole("Hole2");
+            logic.loadHole("Hole2", holeCounter);
             holeCounter++;
 
         }

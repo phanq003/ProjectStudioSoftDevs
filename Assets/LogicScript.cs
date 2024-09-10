@@ -68,10 +68,10 @@ public class LogicScript : MonoBehaviour
         scoreValue.Score = 0;
     }
 
-    public void loadHole(string levelName)
+    public void loadHole(string levelName, int HoleNum)
     {
         int scoreThisRound = scoreValue.Score - previousHoleScore;
-        playerHoleValue.Add(scoreThisRound);
+        playerHoleValue[HoleNum - 1] = scoreValue.Score;
         Debug.Log(TheUIManager);
         TheUIManager.calculateShots(scoreThisRound);
         previousHoleScore = scoreValue.Score;

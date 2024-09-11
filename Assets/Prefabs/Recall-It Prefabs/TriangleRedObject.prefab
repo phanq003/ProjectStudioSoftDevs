@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5319494523879794550}
   - component: {fileID: 8406752033271023514}
-  - component: {fileID: 6074541010814000778}
+  - component: {fileID: 2036741531051676032}
   m_Layer: 0
   m_Name: TriangleRedObject
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6074541010814000778
+--- !u!114 &2036741531051676032
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5742583317839228049}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f583358913a86945ae74644b0b0e7a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 933b9c129d67fc049bcad046a48489ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shape: Triangle

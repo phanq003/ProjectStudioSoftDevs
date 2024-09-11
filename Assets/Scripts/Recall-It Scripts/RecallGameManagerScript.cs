@@ -8,13 +8,42 @@ public class RecallGameManagerScript : MonoBehaviour
     
     // Start is called before the first frame update
     void Start()
+    [SerializeField] private ShapeManagerScript shapeManager;
+    private int rampUpThresholdIncreaseShapesRecall;
+    private int rampUpThresholdIncreaseShapeInstance;
+    private int rampUpIntervals;
+    private int MaxRampUp;
+
+
+    private void Start()
     {
         
+        rampUpIntervals = 2;
+        rampUpThresholdIncreaseShapesRecall = rampUpIntervals;
+        rampUpThresholdIncreaseShapeInstance = 6;
+        MaxRampUp = 10;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if (!shapeManager.currentlyRecalling() && !isQuestionGenerated && !waitingForAnswer && validHealth())
+        {
+        else if (hasAnswered && validHealth())
+        {
+            Debug.Log("Next");
+            shapeManager.nextRecall();
+    public void rampUp()
+    {
+        Debug.Log("Called");
+        if (playerScore == rampUpThresholdIncreaseShapeInstance)
+        {
+            shapeManager.increaseRecallInstance();
+            shapeManager.resetShapesRecalled();
+            rampUpThresholdIncreaseShapesRecall += rampUpIntervals;
+        }
+        else if (playerScore == rampUpThresholdIncreaseShapesRecall && playerScore <= MaxRampUp)
+        {
+            shapeManager.increaseShapesRecalled();
+            rampUpThresholdIncreaseShapesRecall += rampUpIntervals;
+        }
     }
 }

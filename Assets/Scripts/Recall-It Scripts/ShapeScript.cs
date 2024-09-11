@@ -19,7 +19,15 @@ public class ShapeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (duration < hideDelay)
+        {
+            duration += Time.deltaTime;
+        }
+        else if (!isHidden)
+        {
+            gameObject.SetActive(false);
+            isHidden = true;
+        }
     }
 
     public string getShape()

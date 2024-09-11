@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4029659230946236374}
-  - component: {fileID: 26645908069663964}
+  - component: {fileID: -9030304367476923102}
   - component: {fileID: 4306005547389744050}
   m_Layer: 0
   m_Name: CircleGreenObject
@@ -33,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &26645908069663964
+--- !u!114 &-9030304367476923102
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1737628215201327216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ace147bd6e487da4682115a825125bf6, type: 3}
+  m_Script: {fileID: 11500000, guid: 933b9c129d67fc049bcad046a48489ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shape: Circle

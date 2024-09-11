@@ -44,15 +44,15 @@ public class Ball : MonoBehaviour
                 //UnityEngine.Debug.Log(startMousePos);
                 isDragging = true;
                 //Vector2 ballLocation = gameObject.transform.position;
-               
+
                 float scaleVal = Vector2.SqrMagnitude(shotStartLocation - startMousePos);
-                Vector3 testVect = (shotStartLocation - startMousePos).normalized * scaleVal /30;
+                Vector3 testVect = (shotStartLocation - startMousePos).normalized * scaleVal / 30;
                 Vector3 direction = (shotStartLocation - startMousePos);
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 golfBallIndicator.transform.rotation = Quaternion.Euler(0, 0, angle + 90);
                 golfBallIndicator.transform.localScale = new Vector3(scaleVal / 40, scaleVal / 4, 1);
-                    //golfBallIndicator.transform.position = gameObject.transform.position + new Vector3(offset * scaleVal / 40, offset * scaleVal / 40, 0).normalized;
-                    golfBallIndicator.transform.position = gameObject.transform.position + testVect;
+                //golfBallIndicator.transform.position = gameObject.transform.position + new Vector3(offset * scaleVal / 40, offset * scaleVal / 40, 0).normalized;
+                golfBallIndicator.transform.position = gameObject.transform.position + testVect;
             }
 
             if (Input.GetMouseButtonDown(0) && isDragging)
@@ -71,4 +71,10 @@ public class Ball : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Water")){
+            transform.position = new Vector3(-6.0f, -1.5f, 0f);
+        }
+    }
 }

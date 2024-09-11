@@ -108,6 +108,10 @@ public class UIManager : MonoBehaviour
 
 
     }
+    public void procedeToHole3()
+        {
+        SceneManager.LoadScene("Hole3");
+        }
 
     private string determineScoreRank(int score)
     {

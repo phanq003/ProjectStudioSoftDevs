@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.ComponentModel;
 using System.Linq;
+using UnityEditor.Networking.PlayerConnection;
+using System.Diagnostics;
+using System;
 
 public class LogicScript : MonoBehaviour
 {
@@ -13,7 +16,8 @@ public class LogicScript : MonoBehaviour
     //public int strokeCount;
     public Text strokeText;
     public ScoreSO scoreValue;
-    public List<int> playerHoleValue = new List<int>(numOfHoles);
+    //[NonSerialized]
+    public List<int> playerHoleValue;
     public UIManager TheUIManager;
     public int previousHoleScore;
 
@@ -25,9 +29,19 @@ public class LogicScript : MonoBehaviour
     {
         if (scene.name == "Hole1")
         {
+            UnityEngine.Debug.Log(scoreValue.PlayerScores.Capacity.ToString());
             scoreValue.Score = 0;
             scoreValue.PreviousHoleScore = 0;
+            scoreValue.HoleCounter = 1;
+            playerHoleValue = new List<int>();
+            for (int holeValue = 0; holeValue < 2; holeValue++)
+            {
+                playerHoleValue.Add(0); 
+            }
+      
+
         }
+        playerHoleValue = scoreValue.PlayerScores;
         updateScore();
         
     }
@@ -48,7 +62,7 @@ public class LogicScript : MonoBehaviour
     public void Start()
     {
         updateScore();
-        Debug.Log(TheUIManager);
+        
     }
 
     [ContextMenu("Add Stroke")]
@@ -60,7 +74,10 @@ public class LogicScript : MonoBehaviour
     }
     public void updateScore()
     {
-        strokeText.text = scoreValue.Score.ToString();
+        if (SceneManager.GetActiveScene().name != "Results")
+        {
+            strokeText.text = scoreValue.Score.ToString();
+        }
     }
 
     public void resetStrokes()
@@ -70,19 +87,25 @@ public class LogicScript : MonoBehaviour
 
     public void loadHole(string levelName, int HoleNum)
     {
-        int scoreThisRound = scoreValue.Score - previousHoleScore;
-        playerHoleValue[HoleNum - 1] = scoreValue.Score;
-        Debug.Log(TheUIManager);
+        int scoreThisRound = updateScores(HoleNum);
         TheUIManager.calculateShots(scoreThisRound);
-        previousHoleScore = scoreValue.Score;
-        scoreValue.PreviousHoleScore = previousHoleScore;
-        scoreValue.PlayerScores = playerHoleValue;
         TheUIManager.nextMap(levelName);
         //SceneManager.LoadScene(levelName);
     }
-    public void loadEnding()
+    public int updateScores(int HoleNum)
     {
-        TheUIManager.displayResults();
+        int scoreThisRound = scoreValue.Score - previousHoleScore;
+        playerHoleValue[HoleNum - 1] = scoreThisRound;
+        previousHoleScore = scoreValue.Score;
+        scoreValue.PreviousHoleScore = previousHoleScore;
+        scoreValue.PlayerScores = playerHoleValue;
+        return scoreThisRound;
+    }
+    public void loadEnding(int HoleNum)
+    {
+        int scoreThisRound = updateScores(HoleNum);
+        SceneManager.LoadScene("Results");
+        //TheUIManager.displayResults();
     }
 
 }

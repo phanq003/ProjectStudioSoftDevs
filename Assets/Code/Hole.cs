@@ -12,9 +12,11 @@ public class Hole : MonoBehaviour
     int holeCounter = 1;
     static int numOfHoles = 2;
     List<string> scenes  = new List<string>(numOfHoles);
+    public ScoreSO scoreSO;
     private void Awake()
     { 
         logic = GameObject.Find("LogicManager").GetComponent<LogicScript>();
+        scoreSO.HoleCounter++;
         /* this code that would automatically add the scene makes unity not load for some reason therefore they are added in manual for now curren
         foreach(EditorBuildSettingsScene theScene in EditorBuildSettings.scenes)
         {
@@ -47,10 +49,10 @@ public class Hole : MonoBehaviour
             scenes.Insert(0,"Hole1");
             scenes.Insert(1,"Hole2");
             other.gameObject.SetActive(false);
-            try { logic.loadHole(scenes[holeCounter], holeCounter); }
-
-            catch { UnityEngine.Debug.Log("this ic alled"); logic.loadEnding(); }
+            try { logic.loadHole(scenes[scoreSO.HoleCounter], scoreSO.HoleCounter); }
+            catch {logic.loadEnding(scoreSO.HoleCounter); }
             holeCounter++;
+            
 
         }
 

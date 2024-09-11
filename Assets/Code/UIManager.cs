@@ -101,11 +101,6 @@ public class UIManager : MonoBehaviour
 
 
     }
-    public void exitResults()
-    {
-        Results.SetActive(false);
-        //go back to game select
-    }
 
     private string determineScoreRank(int score)
     {

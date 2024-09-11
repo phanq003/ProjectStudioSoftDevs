@@ -1362,6 +1362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logic: {fileID: 1411153621}
+  scoreSO: {fileID: 11400000, guid: dfa94febc58c54e4aabfb718cfc402b1, type: 2}
 --- !u!1 &822168839
 GameObject:
   m_ObjectHideFlags: 0

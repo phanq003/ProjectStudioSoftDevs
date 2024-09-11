@@ -83,7 +83,14 @@ public class UIManager : MonoBehaviour
         }
         hole += ")";
         EndingText[2].text = hole;
-        EndingText[0].text = "You did it! You earnt a " + determineScoreRank(scoreOnHole) + " for this hole!";
+        if (ScoreManager.PreviousHoleScore <= 10)
+        {
+            EndingText[0].text = "You did it! You earnt a " + determineScoreRank(scoreOnHole) + " for this hole!";
+        }
+        else
+        {
+            EndingText[0].text = "Whoops! You took 10 shots this round, try again on the next course!";
+        }
 
     }
     public void displayResults()

@@ -10,8 +10,6 @@ public class Hole : MonoBehaviour
 {
     public LogicScript logic;
     int holeCounter = 1;
-    static int numOfHoles = 2;
-    List<string> scenes  = new List<string>(numOfHoles);
     public ScoreSO scoreSO;
     private void Awake()
     { 
@@ -45,18 +43,10 @@ public class Hole : MonoBehaviour
         
         if (other.CompareTag("Ball"))
         {
-            List<string> scenes = new List<string>(2);
-            scenes.Insert(0,"Hole1");
-            scenes.Insert(1,"Hole2");
             other.gameObject.SetActive(false);
-            try { logic.loadHole(scenes[scoreSO.HoleCounter], scoreSO.HoleCounter); }
-            catch {logic.loadEnding(scoreSO.HoleCounter); }
+            logic.manageNextScene();
             holeCounter++;
-            
 
         }
-
-
-    
     }
 }

@@ -8,6 +8,7 @@ using System.Linq;
 using UnityEditor.Networking.PlayerConnection;
 using System.Diagnostics;
 using System;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class LogicScript : MonoBehaviour
 {
@@ -20,7 +21,9 @@ public class LogicScript : MonoBehaviour
     public List<int> playerHoleValue;
     public UIManager TheUIManager;
     public int previousHoleScore;
+    private bool playerTurnExceeded = false;
 
+    List<string> scenes = new List<string>(numOfHoles);
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -29,25 +32,25 @@ public class LogicScript : MonoBehaviour
     {
         if (scene.name == "Hole1")
         {
-            UnityEngine.Debug.Log(scoreValue.PlayerScores.Capacity.ToString());
+            playerHoleValue = new List<int>(numOfHoles);
             scoreValue.Score = 0;
             scoreValue.PreviousHoleScore = 0;
             scoreValue.HoleCounter = 1;
-            playerHoleValue = new List<int>();
+            
             for (int holeValue = 0; holeValue < 2; holeValue++)
             {
-                playerHoleValue.Add(0); 
+                playerHoleValue.Add(0);
+                playerHoleValue[holeValue] = 0;
             }
-      
-
         }
-        playerHoleValue = scoreValue.PlayerScores;
+        scoreValue.PlayerScores = playerHoleValue;
         updateScore();
         
     }
     public void Awake()
     {
-        playerHoleValue.Add(scoreValue.Score);
+        scenes.Insert(0, "Hole1");
+        scenes.Insert(1, "Hole2");
         if (Instance ==  null)
         {
             Instance = this;
@@ -68,9 +71,26 @@ public class LogicScript : MonoBehaviour
     [ContextMenu("Add Stroke")]
     public void addStroke()
     {
-        scoreValue.Score += 1;
-        updateScore();
+        if (checkForTurnCap() == true) {
+            playerTurnExceeded = true;
+            manageNextScene();
+        }
+        else
+        {
+            scoreValue.Score += 1;
+            updateScore();
+        }
 
+    }
+    public void updateOnResults()
+    {
+        playerHoleValue = scoreValue.PlayerScores;
+        updateScore();
+    }
+    public void manageNextScene()
+    {
+        try { loadHole(scoreValue.HoleCounter, scoreValue.HoleCounter); }
+        catch { loadEnding(scoreValue.HoleCounter); }
     }
     public void updateScore()
     {
@@ -85,17 +105,36 @@ public class LogicScript : MonoBehaviour
         scoreValue.Score = 0;
     }
 
-    public void loadHole(string levelName, int HoleNum)
+    public void loadHole(int sceneNumber, int HoleNum)
     {
-        int scoreThisRound = updateScores(HoleNum);
-        TheUIManager.calculateShots(scoreThisRound);
-        TheUIManager.nextMap(levelName);
-        //SceneManager.LoadScene(levelName);
+        if (HoleNum != numOfHoles)
+        {
+            int scoreThisRound = updateScores(HoleNum);
+            TheUIManager.calculateShots(scoreThisRound);
+            TheUIManager.nextMap(scenes[sceneNumber]);
+        }
+        else
+        {
+            loadEnding(HoleNum);
+        }
+        
     }
     public int updateScores(int HoleNum)
     {
         int scoreThisRound = scoreValue.Score - previousHoleScore;
-        playerHoleValue[HoleNum - 1] = scoreThisRound;
+        UnityEngine.Debug.Log(HoleNum.ToString());
+        UnityEngine.Debug.Log(scoreValue.Score.ToString() + "is the score");
+        UnityEngine.Debug.Log(previousHoleScore.ToString() + "previous score");
+        try
+        {
+            playerHoleValue[HoleNum - 1] = scoreThisRound;
+        }
+        catch
+        {
+            UnityEngine.Debug.Log(playerHoleValue.Count.ToString());
+            playerHoleValue.Insert(HoleNum -1, scoreThisRound); 
+        }
+        UnityEngine.Debug.Log(HoleNum.ToString());
         previousHoleScore = scoreValue.Score;
         scoreValue.PreviousHoleScore = previousHoleScore;
         scoreValue.PlayerScores = playerHoleValue;
@@ -103,9 +142,23 @@ public class LogicScript : MonoBehaviour
     }
     public void loadEnding(int HoleNum)
     {
+        this.updateOnResults();
         int scoreThisRound = updateScores(HoleNum);
         SceneManager.LoadScene("Results");
-        //TheUIManager.displayResults();
     }
-
+    public bool checkForTurnCap()
+    {
+        if (scoreValue.Score - scoreValue.PreviousHoleScore > 10)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool getPlayerTurnExceeded()
+    {
+        return playerTurnExceeded;
+    }
 }

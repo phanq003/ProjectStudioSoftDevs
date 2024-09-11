@@ -23,25 +23,28 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButton(0))
+        if (logic.getPlayerTurnExceeded() == false)
         {
-            Console.Out.WriteLine("Mouse button pressed");
-            startMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Console.Out.WriteLine(startMousePos);
-            isDragging = true;
-        }
+            if (Input.GetMouseButton(0))
+            {
+                Console.Out.WriteLine("Mouse button pressed");
+                startMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Console.Out.WriteLine(startMousePos);
+                isDragging = true;
+            }
 
-        if(Input.GetMouseButtonDown(0) && isDragging)
-        {
-            endMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        }
+            if (Input.GetMouseButtonDown(0) && isDragging)
+            {
+                endMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            }
 
-        if(Input.GetMouseButtonUp(0) && isDragging)
-        {
-            Vector2 direction = startMousePos - endMousePos;
-            rb.AddForce(-direction*forceMulitplyer, ForceMode2D.Impulse);
-            isDragging=false;
-            logic.addStroke();
+            if (Input.GetMouseButtonUp(0) && isDragging)
+            {
+                Vector2 direction = startMousePos - endMousePos;
+                rb.AddForce(-direction * forceMulitplyer, ForceMode2D.Impulse);
+                isDragging = false;
+                logic.addStroke();
+            }
         }
     }
 

@@ -14,6 +14,8 @@ public class RecallGameManagerScript : MonoBehaviour
     private bool waitingForAnswer;
     private int correctAnswer;
     private int playerScore;
+    private int healthNumber;
+    private bool gameOverOnce;
     private int rampUpThresholdIncreaseShapesRecall;
     private int rampUpThresholdIncreaseShapeInstance;
     private int rampUpIntervals;
@@ -25,6 +27,8 @@ public class RecallGameManagerScript : MonoBehaviour
         isQuestionGenerated = false;
         waitingForAnswer = false;
         hasAnswered = false;
+        healthNumber = gameUI.getHealth().Length;
+        gameOverOnce = true;
         rampUpIntervals = 2;
         rampUpThresholdIncreaseShapesRecall = rampUpIntervals;
         rampUpThresholdIncreaseShapeInstance = 6;
@@ -57,7 +61,32 @@ public class RecallGameManagerScript : MonoBehaviour
             gameUI.hideQuestionDisplay();
         }
 
+        else if (gameOverOnce && !validHealth())
+        {
+            gameUI.gameOver();
+            gameOverOnce = false;
+        }
     }
+
+    public void loseHealth()
+    {
+        if (healthNumber > 0)
+        {
+            healthNumber--;
+            gameUI.updateHealth(healthNumber);
+        }
+    }
+
+    public bool validHealth()
+    {
+        if (healthNumber > 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public void answer1Clicked()
     {
         compareAnswer(gameUI.getPopulatedAnswers()[0]);
@@ -90,6 +119,12 @@ public class RecallGameManagerScript : MonoBehaviour
             addScore();
 
         }
+        else
+        {
+            loseHealth();
+        }
+    }
+
     public void addScore()
     {
         playerScore++;

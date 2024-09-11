@@ -15,12 +15,46 @@ public class RecallGameUIScript : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private Button[] answerButtons;
     private List<Text> populatedAnswers;
+    public Image[] health;
+    public GameObject[] gameOverUI;
+    private bool isGameOver;
+    private float durationButtonDelay = 1;
 
 
     void Start()
     {
         populatedAnswers = new List<Text>();
+        isGameOver = false;
 
+        foreach (Button button in interfaceButtons)
+        {
+            button.enabled = false;
+        }
+    }
+
+    void Update()
+    {
+        else if (isGameOver)
+        {
+            if (durationButtonDelay > 0)
+            {
+                durationButtonDelay -= Time.deltaTime;
+            }
+            else
+            {
+                enableInterfaceButtons();
+            }
+        }
+    }
+
+    public Image[] getHealth()
+    {
+        return health;
+    }
+
+    public void updateHealth(int healthNumber)
+    {
+        health[healthNumber].gameObject.SetActive(false);
     }
 
     public void updateQuestion(string question)
@@ -28,6 +62,21 @@ public class RecallGameUIScript : MonoBehaviour
         questionText.text = question;
     }
 
+    public void gameOver()
+    {
+        isGameOver = true;
+        foreach (GameObject ui in gameOverUI)
+        {
+            ui.SetActive(true);
+        }
+    }
+    public void enableInterfaceButtons()
+    {
+        foreach (Button button in interfaceButtons)
+        {
+            button.enabled = true;
+        }
+    }
     public void displayQuestion()
     {
         foreach (GameObject ui in questionUI)
@@ -102,5 +151,16 @@ public class RecallGameUIScript : MonoBehaviour
     {
         scoreText.text = score.ToString();
         
+    }
+    public void restartGame()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void quitGame()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene("GameSelectScene");
     }
 }

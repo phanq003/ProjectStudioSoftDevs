@@ -18,7 +18,10 @@ public class RecallGameUIScript : MonoBehaviour
     public Button[] interfaceButtons;
     public Text highScoreText;
     public Image[] health;
+    public GameObject pauseButton;
+    public GameObject[] pauseGameUI;
     public GameObject[] gameOverUI;
+    private bool isPaused;
     private bool isGameOver;
     private float durationButtonDelay = 1;
 
@@ -26,6 +29,7 @@ public class RecallGameUIScript : MonoBehaviour
     void Start()
     {
         populatedAnswers = new List<Text>();
+        isPaused = false;
         isGameOver = false;
 
         foreach (Button button in interfaceButtons)
@@ -68,6 +72,7 @@ public class RecallGameUIScript : MonoBehaviour
 
     public void gameOver()
     {
+        pauseButton.SetActive(false);
         isGameOver = true;
         updateResultScore();
         foreach (GameObject ui in gameOverUI)
@@ -83,6 +88,36 @@ public class RecallGameUIScript : MonoBehaviour
             button.enabled = true;
         }
     }
+    public void pauseGame()
+    {
+        Time.timeScale = 0f;
+        isPaused = true;
+        foreach (GameObject ui in pauseGameUI)
+        {
+            ui.SetActive(true);
+        }
+
+        disableAnswers();
+    }
+
+    public void resumeGame()
+    {
+        Time.timeScale = 1.0f;
+        isPaused = false;
+
+        foreach (GameObject ui in pauseGameUI)
+        {
+            ui.SetActive(false);
+        }
+
+        enableAnswers();
+    }
+
+    public bool getGamePaused()
+    {
+        return isPaused;
+    }
+
     public void displayQuestion()
     {
         foreach (GameObject ui in questionUI)

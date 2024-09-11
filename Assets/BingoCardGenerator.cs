@@ -59,7 +59,10 @@ namespace BingoCard{
                     newCell.name = $"Cell_{row}_{col}";
                     
                     //Adds a listener so that when the button is clicked, it passes Vector and cell obj to onCellClick() method
-                    newCell.GetComponent<Button>().onClick.AddListener(() => onCellClick(new Vector2Int(col,row), newCell));
+                    //make new instances of vars
+                    int currentRow = row;
+                    int currentCol = col;
+                    newCell.GetComponent<Button>().onClick.AddListener(() => onCellClick(new Vector2Int(currentCol,currentRow), newCell));
 
             }
             }

@@ -131,6 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 70834265}
+  - component: {fileID: 70834266}
   m_Layer: 0
   m_Name: Bingo Draw Manager
   m_TagString: Untagged
@@ -153,6 +154,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &70834266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70834264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 960d6016aab1013429eb15d7ba4cca52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possibleVals: []
+  currentVal: {fileID: 0}
 --- !u!1 &249243396
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,6 +411,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 371124380}
   m_CullTransparentMesh: 1
+--- !u!1 &615126399
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 615126401}
+  - component: {fileID: 615126400}
+  m_Layer: 0
+  m_Name: Bingo Win Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &615126400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615126399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e88290cc383bed42a78a73410218b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bingoCard: {fileID: 942270668}
+  bingoCardGen: {fileID: 0}
+--- !u!4 &615126401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615126399}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.7892754, y: 8.882128, z: 1.4544894}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &818991753
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,7 +537,7 @@ GameObject:
   - component: {fileID: 942270670}
   m_Layer: 0
   m_Name: Bingo Card Manager
-  m_TagString: Untagged
+  m_TagString: BingoCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -511,6 +572,9 @@ MonoBehaviour:
   bingoCell: {fileID: 5923638512012289938, guid: a43ac3de92a69894b82387c555d8cc8a, type: 3}
   gridObj: {fileID: 249243397}
   gridSize: 5
+  possibleVals: []
+  valuesInGrid: []
+  drawGenerator: {fileID: 70834266}
 --- !u!1 &1312561957
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,3 +747,4 @@ SceneRoots:
   - {fileID: 818991756}
   - {fileID: 942270669}
   - {fileID: 70834265}
+  - {fileID: 615126401}

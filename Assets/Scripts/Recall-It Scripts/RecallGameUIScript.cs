@@ -15,6 +15,8 @@ public class RecallGameUIScript : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private Button[] answerButtons;
     private List<Text> populatedAnswers;
+    public Button[] interfaceButtons;
+    public Text highScoreText;
     public Image[] health;
     public GameObject[] gameOverUI;
     private bool isGameOver;
@@ -30,6 +32,8 @@ public class RecallGameUIScript : MonoBehaviour
         {
             button.enabled = false;
         }
+
+        updateHighScore();
     }
 
     void Update()
@@ -65,11 +69,13 @@ public class RecallGameUIScript : MonoBehaviour
     public void gameOver()
     {
         isGameOver = true;
+        updateResultScore();
         foreach (GameObject ui in gameOverUI)
         {
             ui.SetActive(true);
         }
     }
+
     public void enableInterfaceButtons()
     {
         foreach (Button button in interfaceButtons)
@@ -163,4 +169,24 @@ public class RecallGameUIScript : MonoBehaviour
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("GameSelectScene");
     }
+
+    public bool updateHighScore()
+    {
+        if (PlayerPrefs.HasKey("RecallHighScore"))
+        {
+            if (int.Parse(scoreText.text) > PlayerPrefs.GetInt("RecallHighScore"))
+            {
+                PlayerPrefs.SetInt("RecallHighScore", int.Parse(scoreText.text));
+                return true;
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("RecallHighScore", int.Parse(scoreText.text));
+        }
+        highScoreText.text = PlayerPrefs.GetInt("RecallHighScore").ToString();
+
+        return false;
+    }
+
 }

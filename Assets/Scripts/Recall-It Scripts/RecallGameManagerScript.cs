@@ -13,6 +13,7 @@ public class RecallGameManagerScript : MonoBehaviour
     private bool hasAnswered;
     private bool waitingForAnswer;
     private int correctAnswer;
+    private int playerScore;
     private int rampUpThresholdIncreaseShapesRecall;
     private int rampUpThresholdIncreaseShapeInstance;
     private int rampUpIntervals;
@@ -86,8 +87,14 @@ public class RecallGameManagerScript : MonoBehaviour
         if (answer.Equals(correctAnswer.ToString()))
         {
             Debug.Log("Correct");
+            addScore();
 
         }
+    public void addScore()
+    {
+        playerScore++;
+        rampUp();
+        gameUI.updateScoreDisplay(playerScore);
     }
 
     public bool getHasAnswered()

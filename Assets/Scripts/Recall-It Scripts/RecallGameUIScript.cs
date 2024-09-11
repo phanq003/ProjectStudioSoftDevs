@@ -12,6 +12,7 @@ public class RecallGameUIScript : MonoBehaviour
     [SerializeField] private GameObject[] questionUI;
     [SerializeField] private Text questionText;
     [SerializeField] private Text[] answerTexts;
+    [SerializeField] private Text scoreText;
     [SerializeField] private Button[] answerButtons;
     private List<Text> populatedAnswers;
 
@@ -97,4 +98,9 @@ public class RecallGameUIScript : MonoBehaviour
         return answerStrings;
     }
 
+    public void updateScoreDisplay(int score)
+    {
+        scoreText.text = score.ToString();
+        
+    }
 }

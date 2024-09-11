@@ -116,11 +116,13 @@ public class RecallGameManagerScript : MonoBehaviour
         if (answer.Equals(correctAnswer.ToString()))
         {
             Debug.Log("Correct");
+            gameUI.activeCorrect();
             addScore();
 
         }
         else
         {
+            gameUI.activeWrong();
             loseHealth();
         }
     }

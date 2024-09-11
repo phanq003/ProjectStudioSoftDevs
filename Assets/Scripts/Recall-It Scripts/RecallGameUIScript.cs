@@ -17,6 +17,8 @@ public class RecallGameUIScript : MonoBehaviour
     private List<Text> populatedAnswers;
     public Button[] interfaceButtons;
     public Text highScoreText;
+    public Text resultScore;
+    public Text resultComment;
     public Image[] health;
     public GameObject pauseButton;
     public GameObject[] pauseGameUI;
@@ -24,6 +26,13 @@ public class RecallGameUIScript : MonoBehaviour
     private bool isPaused;
     private bool isGameOver;
     private float durationButtonDelay = 1;
+    private string highScoreBeatenComment = "You beaten the High Score!";
+    private string regularResultComment = "Awesome! You did great!";
+    [SerializeField] Image correctImage;
+    [SerializeField] Image wrongImage;
+    private float durationFeedbackDelay = 1;
+    [SerializeField] private Text startText;
+    private float durationStartText = 1;
 
 
     void Start()
@@ -42,6 +51,19 @@ public class RecallGameUIScript : MonoBehaviour
 
     void Update()
     {
+        
+        if (startText.gameObject.activeSelf)
+        {
+            if (durationStartText > 0)
+            {
+                durationStartText -= Time.deltaTime;
+            }
+            else
+            {
+                startText.gameObject.SetActive(false);
+            }
+        }
+        
         else if (isGameOver)
         {
             if (durationButtonDelay > 0)
@@ -51,6 +73,19 @@ public class RecallGameUIScript : MonoBehaviour
             else
             {
                 enableInterfaceButtons();
+            }
+        }
+        else if (correctImage.gameObject.activeSelf || wrongImage.gameObject.activeSelf)
+        {
+            if (durationFeedbackDelay > 0)
+            {
+                durationFeedbackDelay -= Time.deltaTime;
+            }
+            else
+            {
+                correctImage.gameObject.SetActive(false);
+                wrongImage.gameObject.SetActive(false);
+                durationFeedbackDelay = 1;
             }
         }
     }
@@ -70,11 +105,19 @@ public class RecallGameUIScript : MonoBehaviour
         questionText.text = question;
     }
 
+    public void updateResultScore()
+    {
+        resultScore.text = scoreText.text;
+    }
+
     public void gameOver()
     {
         pauseButton.SetActive(false);
         isGameOver = true;
+        bool commentResult = updateHighScore();
+        generateResultComment(commentResult);
         updateResultScore();
+
         foreach (GameObject ui in gameOverUI)
         {
             ui.SetActive(true);
@@ -88,10 +131,29 @@ public class RecallGameUIScript : MonoBehaviour
             button.enabled = true;
         }
     }
+
+    public void disableAnswers()
+    {
+        foreach (Button button in answerButtons)
+        {
+            button.enabled = false;
+        }
+    }
+
+    public void enableAnswers()
+    {
+        foreach (Button button in answerButtons)
+        {
+            button.enabled = true;
+        }
+    }
+
     public void pauseGame()
     {
         Time.timeScale = 0f;
         isPaused = true;
+        updateResultScore();
+
         foreach (GameObject ui in pauseGameUI)
         {
             ui.SetActive(true);
@@ -193,6 +255,17 @@ public class RecallGameUIScript : MonoBehaviour
         scoreText.text = score.ToString();
         
     }
+
+    public void activeCorrect()
+    {
+        correctImage.gameObject.SetActive(true);
+    }
+
+    public void activeWrong()
+    {
+        wrongImage.gameObject.SetActive(true);
+    }
+
     public void restartGame()
     {
         Time.timeScale = 1.0f;
@@ -224,4 +297,17 @@ public class RecallGameUIScript : MonoBehaviour
         return false;
     }
 
+    public void generateResultComment(bool result)
+    {
+        Debug.Log(result);
+
+        if (result)
+        {
+            resultComment.text = highScoreBeatenComment;
+        }
+        else
+        {
+            resultComment.text = regularResultComment;
+        }
+    }
 }

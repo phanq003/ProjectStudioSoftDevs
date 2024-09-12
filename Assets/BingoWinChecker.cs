@@ -13,6 +13,7 @@ public class BingoWinChecker : MonoBehaviour
 Still needs to be done:
 - Match win patterns with the actual words being displayed
 - Disable other stuff when win screen is presented
+- Replay Functionality/ make  it have menus
 */
 
     public GameObject bingoCard;

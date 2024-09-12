@@ -4,16 +4,28 @@ using UnityEngine;
 using BingoCard;
 using JetBrains.Annotations;
 using System;
+using UnityEngine.UI;
 
 public class BingoWinChecker : MonoBehaviour
 {
+
+/*
+Still needs to be done:
+- Match win patterns with the actual words being displayed
+- Disable other stuff when win screen is presented
+*/
+
     public GameObject bingoCard;
     public BingoCardGenerator bingoCardGen;
     public List<List<Vector2Int>> winningPatterns = new List<List<Vector2Int>>();
+    public GameObject winOverlay;
 
     // private List<CellData> clickedCellsList = new List<CellData>();
     private int gridSize;
 
+    void Awake(){
+        winOverlay.SetActive(false);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +58,7 @@ public class BingoWinChecker : MonoBehaviour
             }
 
             if (isBingo){
-                Debug.Log("Bingo Found");
+                 winOverlay.SetActive(true);
                 return true;
             }
         }
@@ -58,10 +70,9 @@ public class BingoWinChecker : MonoBehaviour
     bool checkCoordsInClicked(Vector2Int coord, List<CellData> clickedCellsList){
         foreach (CellData cell in clickedCellsList){
 
-    //FIXME Outputting wack coords for some reason, not returning true ever
-            Debug.Log("Cell coords: " + cell.location.x + " " + cell.location.y + ". Checked: " + coord.x + " " +  coord.y  );
+            // Debug.Log("Cell coords: " + cell.location.x + " " + cell.location.y + ". Checked: " + coord.x + " " +  coord.y  );
             if (cell.location.x == coord.x && cell.location.y == coord.y ){
-                Debug.Log("Coords Found");
+                // Debug.Log("Coords Found");
                 return true;
             }
         }

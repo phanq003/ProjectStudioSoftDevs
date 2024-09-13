@@ -127,7 +127,7 @@ public class HighScoreReader : MonoBehaviour
         playerList.limitPlayersToTen();
         if (playerList.getPlayerList().Count() != 0)
         {
-            float offset = 0f;
+            float offset = 0.44f;
             Debug.Log("1it has been printed");
             int cycle = 1;
             foreach (HighScorePlayer thePlayers in playerList.getPlayerList())

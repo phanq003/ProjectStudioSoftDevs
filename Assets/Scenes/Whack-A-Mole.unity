@@ -2377,7 +2377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 721866862}
-  currentScoreText: {fileID: 1187240575}
+  currentScoreText: {fileID: 555623814}
   HighScoreMenu: {fileID: 1384148966}
   LeaderboardPrefab: {fileID: 582741498}
   parent: {fileID: 1384148967}
@@ -3759,7 +3759,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1384148967}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: LeaderBoardMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

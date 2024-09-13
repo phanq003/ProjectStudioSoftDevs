@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.ComponentModel;
 using System.Linq;
-using UnityEditor.Networking.PlayerConnection;
 using System.Diagnostics;
 using System;
 using UnityEngine.SocialPlatforms.Impl;
@@ -13,7 +12,7 @@ using UnityEngine.SocialPlatforms.Impl;
 public class LogicScript : MonoBehaviour
 {
     public static LogicScript Instance;
-    public static int numOfHoles = 2;
+    public static int numOfHoles = 3;
     //public int strokeCount;
     public Text strokeText;
     public ScoreSO scoreValue;
@@ -36,14 +35,18 @@ public class LogicScript : MonoBehaviour
             scoreValue.Score = 0;
             scoreValue.PreviousHoleScore = 0;
             scoreValue.HoleCounter = 1;
-            
-            for (int holeValue = 0; holeValue < 2; holeValue++)
+
+            for (int holeValue = 0; holeValue < numOfHoles; holeValue++)
             {
                 playerHoleValue.Add(0);
                 playerHoleValue[holeValue] = 0;
             }
         }
-        scoreValue.PlayerScores = playerHoleValue;
+        else
+        {
+            playerHoleValue = scoreValue.PlayerScores;
+            previousHoleScore = scoreValue.PreviousHoleScore;
+        }
         updateScore();
         
     }
@@ -51,15 +54,7 @@ public class LogicScript : MonoBehaviour
     {
         scenes.Insert(0, "Hole1");
         scenes.Insert(1, "Hole2");
-        if (Instance ==  null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        scenes.Insert(2, "Hole3");
         updateScore();
     }
     public void Start()
@@ -85,6 +80,7 @@ public class LogicScript : MonoBehaviour
     public void updateOnResults()
     {
         playerHoleValue = scoreValue.PlayerScores;
+        previousHoleScore = scoreValue.PreviousHoleScore;
         updateScore();
     }
     public void manageNextScene()
@@ -122,19 +118,14 @@ public class LogicScript : MonoBehaviour
     public int updateScores(int HoleNum)
     {
         int scoreThisRound = scoreValue.Score - previousHoleScore;
-        UnityEngine.Debug.Log(HoleNum.ToString());
-        UnityEngine.Debug.Log(scoreValue.Score.ToString() + "is the score");
-        UnityEngine.Debug.Log(previousHoleScore.ToString() + "previous score");
         try
         {
             playerHoleValue[HoleNum - 1] = scoreThisRound;
         }
         catch
         {
-            UnityEngine.Debug.Log(playerHoleValue.Count.ToString());
             playerHoleValue.Insert(HoleNum -1, scoreThisRound); 
         }
-        UnityEngine.Debug.Log(HoleNum.ToString());
         previousHoleScore = scoreValue.Score;
         scoreValue.PreviousHoleScore = previousHoleScore;
         scoreValue.PlayerScores = playerHoleValue;

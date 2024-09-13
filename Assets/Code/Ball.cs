@@ -29,8 +29,6 @@ public class Ball : MonoBehaviour
     {
         if (logic.getPlayerTurnExceeded() == false)
         {
-            UnityEngine.Debug.Log(shotStartLocation);
-            UnityEngine.Debug.Log(startMousePos);
             if (Input.GetMouseButtonDown(0))
             {
                 golfBallIndicator.SetActive(true);
@@ -38,20 +36,14 @@ public class Ball : MonoBehaviour
             }
             if (Input.GetMouseButton(0))
             {
-                Console.Out.WriteLine("Mouse button pressed");
-                startMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Console.Out.WriteLine(startMousePos);
-                //UnityEngine.Debug.Log(startMousePos);
+                startMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);            
                 isDragging = true;
-                //Vector2 ballLocation = gameObject.transform.position;
-
                 float scaleVal = Vector2.SqrMagnitude(shotStartLocation - startMousePos);
                 Vector3 testVect = (shotStartLocation - startMousePos).normalized * scaleVal / 30;
                 Vector3 direction = (shotStartLocation - startMousePos);
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 golfBallIndicator.transform.rotation = Quaternion.Euler(0, 0, angle + 90);
                 golfBallIndicator.transform.localScale = new Vector3(scaleVal / 40, scaleVal / 4, 1);
-                //golfBallIndicator.transform.position = gameObject.transform.position + new Vector3(offset * scaleVal / 40, offset * scaleVal / 40, 0).normalized;
                 golfBallIndicator.transform.position = gameObject.transform.position + testVect;
             }
 

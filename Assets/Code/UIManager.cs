@@ -41,18 +41,8 @@ public class UIManager : MonoBehaviour
         Results = GameObject.FindGameObjectWithTag("Results");
         if (Results != null)
         {
-            Debug.Log("WHAT?");
             ResultText = GameObject.FindGameObjectWithTag("ResultText").GetComponent<Text>();
             Results.SetActive(false);
-        }
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
         }
     }
 
@@ -108,10 +98,6 @@ public class UIManager : MonoBehaviour
 
 
     }
-    public void procedeToHole3()
-        {
-        SceneManager.LoadScene("Hole3");
-        }
 
     private string determineScoreRank(int score)
     {
@@ -125,6 +111,6 @@ public class UIManager : MonoBehaviour
 
         }
 
-        return "QuadrupleBogey";
+        return "Quadruple Bogey";
     }
 }

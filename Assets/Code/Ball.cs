@@ -17,6 +17,7 @@ public class Ball : MonoBehaviour
     private Vector2 shotStartLocation;
     private bool isDragging = false;
     private float offset = 1.3f;
+    private static float maxScaleVal = 0.5f;
 
 
     void Start()
@@ -38,12 +39,13 @@ public class Ball : MonoBehaviour
             {
                 startMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);            
                 isDragging = true;
-                float scaleVal = Vector2.SqrMagnitude(shotStartLocation - startMousePos);
-                Vector3 testVect = (shotStartLocation - startMousePos).normalized * scaleVal / 30;
+                float scaleVal = Vector2.SqrMagnitude(shotStartLocation - startMousePos) / 2;
+                Vector3 testVect = (shotStartLocation - startMousePos).normalized * determineScale(scaleVal) / 55;
                 Vector3 direction = (shotStartLocation - startMousePos);
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 golfBallIndicator.transform.rotation = Quaternion.Euler(0, 0, angle + 90);
-                golfBallIndicator.transform.localScale = new Vector3(scaleVal / 40, scaleVal / 4, 1);
+                float scaleValExp = determineScale(scaleVal);
+                golfBallIndicator.transform.localScale = new Vector3(scaleValExp / 50, scaleValExp / 10, 1);
                 golfBallIndicator.transform.position = gameObject.transform.position + testVect;
             }
 
@@ -68,5 +70,15 @@ public class Ball : MonoBehaviour
         if (other.CompareTag("Water")){
             transform.position = new Vector3(-6.0f, -1.5f, 0f);
         }
+    }
+
+    private float determineScale(float scaleVal)
+    {
+        float powVal = Mathf.Round((scaleVal / maxScaleVal) * 100) /100;
+        if (powVal > maxScaleVal)
+        {
+            powVal = 1;
+        }
+        return  Mathf.Pow(scaleVal, powVal);
     }
 }

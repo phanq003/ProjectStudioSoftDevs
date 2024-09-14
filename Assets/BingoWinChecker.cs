@@ -18,8 +18,10 @@ Still needs to be done:
 
     public GameObject bingoCard;
     public BingoCardGenerator bingoCardGen;
+    public BingoDrawGenerator bingoDrawGen;
     public List<List<Vector2Int>> winningPatterns = new List<List<Vector2Int>>();
     public GameObject winOverlay;
+
 
     // private List<CellData> clickedCellsList = new List<CellData>();
     private int gridSize;
@@ -49,13 +51,15 @@ Still needs to be done:
     }
 
     bool checkForBingo(List<CellData> clickedCellsList){
+        List<string> drawnVals = bingoDrawGen.drawnVals;
         foreach (List<Vector2Int> pattern in winningPatterns){
             bool isBingo = true;
             foreach (Vector2Int coord in pattern){
-                if (!checkCoordsInClicked(coord, clickedCellsList)){
+                if (!checkCoordsInClicked(coord, clickedCellsList, drawnVals)){
                     isBingo = false;
                     break;
                 }
+
             }
 
             if (isBingo){
@@ -68,13 +72,15 @@ Still needs to be done:
         return false;
     }
 
-    bool checkCoordsInClicked(Vector2Int coord, List<CellData> clickedCellsList){
+    bool checkCoordsInClicked(Vector2Int coord, List<CellData> clickedCellsList, List<string> drawnVals){
         foreach (CellData cell in clickedCellsList){
 
             // Debug.Log("Cell coords: " + cell.location.x + " " + cell.location.y + ". Checked: " + coord.x + " " +  coord.y  );
             if (cell.location.x == coord.x && cell.location.y == coord.y ){
                 // Debug.Log("Coords Found");
-                return true;
+                if (drawnVals.Contains(cell.content.GetComponentInChildren<Text>().text)){
+                    return true;
+                }
             }
         }
         return false;

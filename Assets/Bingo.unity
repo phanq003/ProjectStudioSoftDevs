@@ -168,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibleVals: []
   currentVal: {fileID: 1575998594}
+  drawnVals: []
 --- !u!1 &249243396
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,6 +658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bingoCard: {fileID: 942270668}
   bingoCardGen: {fileID: 942270670}
+  bingoDrawGen: {fileID: 70834266}
   winOverlay: {fileID: 1645403962}
 --- !u!224 &615126401
 RectTransform:

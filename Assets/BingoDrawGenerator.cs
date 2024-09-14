@@ -7,6 +7,7 @@ public class BingoDrawGenerator : MonoBehaviour
 {
     public List<string> possibleVals;
     public Text currentVal;
+    public List<string> drawnVals;
 
     void Awake(){
         possibleVals = new List<string>{"Christmas", "Merry", "Festive", "Santa Claus", "Saint Nicholas", "Kris Kringle", "Elves", "Jolly", "Reindeer", "Carols", "Carolling", "Carolers", "Mistletoe", "Frankincense", "Myrrh", "Xmas", "Yuletide", "Tinsel", "Stocking", "Presents", "Fruitcake", "Chimney", "Birth", "Candy", "Pinecone", "Spirit", "Tidings", "Tradition", "Rudolph", "Sleigh", "Holiday", "Holly", "Ornaments", "Scrooge", "Sledge", "Snowball", "St. Nicks", "Snowman", "Father", "Christmas", "Christmas Eve", "Christmas tree", "Jack Frost", "Santa’s helpers", "Santa’s workshop", "Christmas carol", "Christmas card", "Frosty the Snowman", "December 25", "Sleigh bells", "Gingerbread house", "North Pole", "Plum pudding", "Season’s greetings", "Celebrate", "Christmas tree stand", "Chestnuts", "Angel", "Elf", "Feast", "Goose"};
@@ -40,6 +41,7 @@ public class BingoDrawGenerator : MonoBehaviour
             {
                 currentVal.text = possibleVals[randomIndex];
                 // then remove that value extracted from the list
+                drawnVals.Add(possibleVals[randomIndex]);
                 possibleVals.RemoveAt(randomIndex);
             }
             yield return new WaitForSeconds(5f);

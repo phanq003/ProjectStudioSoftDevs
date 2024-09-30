@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class PlayButton : MonoBehaviour
 {
     // Start is called before the first frame update
+    public string nextScene;
+
     public void play()
     {
-        SceneManager.LoadScene(""); //enter game scene name here
+        SceneManager.LoadScene(nextScene); //enter game scene name here
     }
 
 

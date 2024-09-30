@@ -8,7 +8,7 @@ public class NewBehaviourScript : MonoBehaviour
     public string previousScene;
     public void back()
     {
-        SceneManager.LoadScene("GameSelectScene");
+        SceneManager.LoadScene(previousScene);
     }
 
 

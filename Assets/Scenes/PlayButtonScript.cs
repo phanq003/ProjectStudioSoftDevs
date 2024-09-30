@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayButtonScript : MonoBehaviour
 {
+    public string nextScene;
     public void play()
     {
         SceneManager.LoadScene(""); //insert game scene here

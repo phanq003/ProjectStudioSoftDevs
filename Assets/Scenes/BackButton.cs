@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class NewBehaviourScript : MonoBehaviour
 {
+    public string nextScene;
+
     public void back()
     {
-        SceneManager.LoadScene("GameSelectScene");
+        SceneManager.LoadScene(nextScene);
     }
 
 

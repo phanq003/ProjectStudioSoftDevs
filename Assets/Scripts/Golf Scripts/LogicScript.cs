@@ -22,8 +22,7 @@ public class LogicScript : MonoBehaviour
     public UIManager TheUIManager;
     public int previousHoleScore;
     private bool playerTurnExceeded = false;
-    private bool firstScene = false;
-
+  
     List<string> scenes = new List<string>(numOfHoles);
     void OnEnable()
     {
@@ -34,8 +33,6 @@ public class LogicScript : MonoBehaviour
         playerHoleValue = new List<int>(numOfHoles);
         if (scene.name == "Hole1")
         {
-            UnityEngine.Debug.Log("hits");
-            firstScene = true;
             scoreValue.Score = 0;
             scoreValue.PreviousHoleScore = 0;
             scoreValue.HoleCounter = 1;
@@ -123,7 +120,6 @@ public class LogicScript : MonoBehaviour
         {
             playerHoleValue.Add(0);
             playerHoleValue[holeValue] = 0;
-            UnityEngine.Debug.Log("HAPPENED" + playerHoleValue.Count());
         }
     }
     public int updateScores(int HoleNum)
@@ -133,7 +129,6 @@ public class LogicScript : MonoBehaviour
         {
             this.resetVal();
             playerHoleValue[0] = previousHoleScore;
-            UnityEngine.Debug.Log(scoreThisRound);
         }
         try
         {

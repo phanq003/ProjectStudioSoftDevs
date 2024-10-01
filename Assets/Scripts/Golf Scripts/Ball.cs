@@ -17,7 +17,6 @@ public class Ball : MonoBehaviour
     private Vector2 endMousePos;
     private Vector2 shotStartLocation;
     private bool isDragging = false;
-    private float offset = 1.3f;
     private static float maxScaleVal = 0.5f;
 
 
@@ -74,10 +73,8 @@ public class Ball : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        UnityEngine.Debug.Log(collision.otherCollider);
         if (collision.otherCollider.CompareTag("Ball"))
         {
-            UnityEngine.Debug.Log("YEAH");
             wallSound.Play();
         }
     }

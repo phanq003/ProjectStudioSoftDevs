@@ -963,21 +963,23 @@ MonoBehaviour:
 
     To memorise and recall the patterns
 
+    HOW TO PLAY
+
+    watch
+    the pattern which appears on the screen. a question will appear once the pattern
+    is complete. click on one of the 3 answer and if it is correct a point will be
+    added to your score. A life will be lost if you select the wrong answer
+
     SCORING
 
     A
     Point is given when a question about a pattern is answered correctly. The difficulty
     increases every 2 points
 
-    LIVES
-
-    You Start with 3 lives. a life is lost
-    when a pattern is incorrectly recalled and the answer you have given is wrong
-
     GAMEOVER
 
-    the
-    game is over when all lives are lost'
+    the game is over when all lives are
+    lost'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

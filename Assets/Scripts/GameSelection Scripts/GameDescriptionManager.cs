@@ -70,7 +70,7 @@ public class GameDescriptionManager : MonoBehaviour
         exitInstructions();
         Destroy(gameObject);
         Debug.Log("Will delete");
-        SceneManager.LoadScene("PreGameInstruct");
+        SceneManager.LoadScene("WhackAMoleInstructions");
         //enable the instructions
 
         //if instructions goes to a new scene write the following code 

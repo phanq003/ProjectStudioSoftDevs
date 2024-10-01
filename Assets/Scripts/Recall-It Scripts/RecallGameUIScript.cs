@@ -17,7 +17,7 @@ public class RecallGameUIScript : MonoBehaviour
     private List<Text> populatedAnswers;
     public Button[] interfaceButtons;
     public Text highScoreText;
-    public Text resultScore;
+    public Text[] resultScore;
     public Text resultComment;
     public Image[] health;
     public GameObject pauseButton;
@@ -107,7 +107,10 @@ public class RecallGameUIScript : MonoBehaviour
 
     public void updateResultScore()
     {
-        resultScore.text = scoreText.text;
+        foreach (Text result in resultScore)
+        {
+            result.text = scoreText.text;
+        }
     }
 
     public void gameOver()

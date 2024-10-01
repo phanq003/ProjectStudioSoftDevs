@@ -21,6 +21,7 @@ Still needs to be done:
     public BingoDrawGenerator bingoDrawGen;
     public List<List<Vector2Int>> winningPatterns = new List<List<Vector2Int>>();
     public GameObject winOverlay;
+    public GameObject falsiePopup;
 
 
     // private List<CellData> clickedCellsList = new List<CellData>();
@@ -28,6 +29,7 @@ Still needs to be done:
 
     void Awake(){
         winOverlay.SetActive(false);
+        falsiePopup.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -67,9 +69,16 @@ Still needs to be done:
                 return true;
             }
         }
-        Debug.Log("No Bingo");
 
+        Debug.Log("No Bingo");
+        StartCoroutine(FalsieDisplay());
         return false;
+    }
+
+    IEnumerator FalsieDisplay(){
+        falsiePopup.SetActive(true);
+        yield return new WaitForSeconds(5);
+        falsiePopup.SetActive(false);
     }
 
     bool checkCoordsInClicked(Vector2Int coord, List<CellData> clickedCellsList, List<string> drawnVals){

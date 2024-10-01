@@ -115,7 +115,7 @@ namespace BingoCard{
                 Debug.Log("Cell UnClicked: " + clickedCellsList.Count);
             }
             else{
-                clickedCell.content.GetComponent<Image>().color = Color.green;
+                clickedCell.content.GetComponent<Image>().color = new Color(0.7f,1,0.66f);
                 clickedCellsList.Add(clickedCell);
                 Debug.Log("Cell Clicked: " + clickedCellsList.Count);
 

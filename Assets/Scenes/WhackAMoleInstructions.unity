@@ -575,9 +575,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 150320065}
-        m_TargetAssemblyTypeName: NewBehaviourScript, Assembly-CSharp
-        m_MethodName: back
+      - m_Target: {fileID: 150320063}
+        m_TargetAssemblyTypeName: PreGameInstructScript, Assembly-CSharp
+        m_MethodName: BackToSelection
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -73,6 +73,7 @@ public class HighScoreReader : MonoBehaviour
         }
     }
     public HighScoreList playerList = new HighScoreList();
+    private List<GameObject> playerScores = new List<GameObject>();
    
     // Start is called before the first frame update
     void Start()
@@ -127,6 +128,7 @@ public class HighScoreReader : MonoBehaviour
         playerList.limitPlayersToTen();
         if (playerList.getPlayerList().Count() != 0)
         {
+            refreshLeaderBoard();
             float offset = 0.44f;
             Debug.Log("1it has been printed");
             int cycle = 1;
@@ -136,6 +138,7 @@ public class HighScoreReader : MonoBehaviour
                 string theName = thePlayers.playerName;
                 string theScore = thePlayers.score.ToString();
                 GameObject tempLeaderboard = Instantiate(LeaderboardPrefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + offset, gameObject.transform.position.z), Quaternion.identity, parent);
+                playerScores.Add(tempLeaderboard);
                 offset -= 0.66f;
                 Text[] text = tempLeaderboard.GetComponentsInChildren<Text>();
                 text[0].text = "#" + cycle;
@@ -147,6 +150,17 @@ public class HighScoreReader : MonoBehaviour
         else
         {
 
+        }
+    }
+
+    public void refreshLeaderBoard()
+    {
+        if (playerScores.Count() > 0)
+        {
+            foreach (GameObject playerScore in playerScores)
+            {
+                Destroy(playerScore);
+            }
         }
     }
 

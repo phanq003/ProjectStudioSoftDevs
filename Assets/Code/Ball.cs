@@ -10,6 +10,7 @@ public class Ball : MonoBehaviour
 {
     public LogicScript logic;
     public GameObject golfBallIndicator;
+    public AudioSource wallSound;
     private float forceMulitplyer = 5f;
     private Rigidbody2D rb;
     private Vector2 startMousePos;
@@ -69,6 +70,15 @@ public class Ball : MonoBehaviour
     {
         if (other.CompareTag("Water")){
             transform.position = new Vector3(-6.0f, -1.5f, 0f);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        UnityEngine.Debug.Log(collision.otherCollider);
+        if (collision.otherCollider.CompareTag("Ball"))
+        {
+            UnityEngine.Debug.Log("YEAH");
+            wallSound.Play();
         }
     }
 

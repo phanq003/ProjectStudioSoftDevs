@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class Hole : MonoBehaviour
 {
+    public AudioSource holeSound;
     public LogicScript logic;
     int holeCounter = 1;
     public ScoreSO scoreSO;
@@ -43,6 +44,7 @@ public class Hole : MonoBehaviour
         
         if (other.CompareTag("Ball"))
         {
+            holeSound.Play(1);
             other.gameObject.SetActive(false);
             logic.manageNextScene();
             holeCounter++;

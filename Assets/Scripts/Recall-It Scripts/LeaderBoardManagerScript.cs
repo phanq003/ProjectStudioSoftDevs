@@ -128,8 +128,8 @@ public class LeaderBoardManagerScript : MonoBehaviour
         playerList.limitPlayersToTen();
         if (playerList.getPlayerList().Count() != 0)
         {
-            float offset = 0.44f;
             refreshLeaderBoard();
+            float offset = 2.9f;
             Debug.Log("1it has been printed");
             int cycle = 1;
             foreach (HighScorePlayer thePlayers in playerList.getPlayerList())
@@ -137,7 +137,7 @@ public class LeaderBoardManagerScript : MonoBehaviour
                 Debug.Log("it has been printed");
                 string theName = thePlayers.playerName;
                 string theScore = thePlayers.score.ToString();
-                GameObject tempLeaderboard = Instantiate(LeaderboardPrefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + offset, gameObject.transform.position.z), Quaternion.identity, parent);
+                GameObject tempLeaderboard = Instantiate(LeaderboardPrefab, new Vector3(parent.transform.position.x, parent.transform.position.y + offset, parent.transform.position.z), Quaternion.identity, parent);
                 playerScores.Add(tempLeaderboard);
                 offset -= 0.66f;
                 Text[] text = tempLeaderboard.GetComponentsInChildren<Text>();

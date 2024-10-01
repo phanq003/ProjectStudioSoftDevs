@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb6245db05a79fd4487e2befe91662ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  previousScene: 
 --- !u!114 &150320066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb284a7dac454c549ab2c8c1bfa073e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextScene: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,6 +889,12 @@ MonoBehaviour:
     Click on moles which appear on screen to score points
 
 
+    HOW
+    TO PLAY
+
+    Moles will appear on screen. click on the mole to score a point.
+    If the mole is not clicked on a live will be removed.
+
     POINTS
 
     points
@@ -897,11 +905,6 @@ MonoBehaviour:
     you are given 3 lives at the
     start of the game. If a mole is not clicked on and dissapears a live will be
     lost. If you have no lives left the game will end
-
-    LEADERBOARD
-
-    Top 10
-    scores will be added to the leaderboard
 
 '
   m_isRightToLeft: 0

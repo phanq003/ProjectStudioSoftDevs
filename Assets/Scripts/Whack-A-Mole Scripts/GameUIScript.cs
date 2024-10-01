@@ -12,6 +12,7 @@ public class GameUIScript : MonoBehaviour
     public Text highScoreText;
     public Text playerScoreText;
     public Text resultScore;
+    public Text resultScoreGameOver;
     public Text resultComment;
     public Image[] health;
     public GameObject pauseButton;
@@ -74,7 +75,7 @@ public class GameUIScript : MonoBehaviour
     {
         cursorManager.setCursorDefault();
         pauseButton.SetActive(false);
-        resultScore.text = playerScoreText.text;
+        resultScoreGameOver.text = playerScoreText.text;
         bool commentResult = updateHighScore();
         generateResultComment(commentResult);
 

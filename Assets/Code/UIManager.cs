@@ -15,9 +15,15 @@ public class UIManager : MonoBehaviour
     public GameObject Results;
     public Text ResultText;
 
+
+    public AudioClip CheerSound;
+    public AudioClip BooSound;
     private string nextScene;
 
     public static UIManager Instance;
+
+    public AudioSource CheerSource;
+    public AudioSource BooSource;
 
     enum Rank
     {
@@ -32,12 +38,14 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         RoundSummary.SetActive(false);
 
     }
     public void Awake()
     {
+        CheerSource = GameObject.FindGameObjectWithTag("Cheer").GetComponent<AudioSource>();
+        BooSource = GameObject.FindGameObjectWithTag("Boo").GetComponent<AudioSource>();
+ 
         Results = GameObject.FindGameObjectWithTag("Results");
         if (Results != null)
         {
@@ -76,10 +84,12 @@ public class UIManager : MonoBehaviour
         if (ScoreManager.PreviousHoleScore <= 10)
         {
             EndingText[0].text = "You did it! You earnt a " + determineScoreRank(scoreOnHole) + " for this hole!";
+            CheerSource.Play();
         }
         else
         {
             EndingText[0].text = "Whoops! You took 10 shots this round, try again on the next course!";
+            BooSource.Play();
         }
 
     }

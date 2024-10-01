@@ -26,8 +26,8 @@ public class RecallGameUIScript : MonoBehaviour
     private bool isPaused;
     private bool isGameOver;
     private float durationButtonDelay = 1;
-    private string highScoreBeatenComment = "You beaten the High Score!";
-    private string regularResultComment = "Awesome! You did great!";
+    private string highScoreBeatenComment = "You beat the High Score! Enter your name for show!";
+    private string regularResultComment = "Awesome! Enter your name to save your score!";
     [SerializeField] Image correctImage;
     [SerializeField] Image wrongImage;
     private float durationFeedbackDelay = 1;

@@ -52,10 +52,10 @@ public GameObject popup;
 
     public void onSelectGame(){
         selectedGame = miniGames[currentGame];
-        showPopup();
+        showPopup(); //TODO CHANGEEEEEEEEEEE!!
     }
 
-    private void showPopup(){
+    private void showPopup(){ 
         Debug.Log(popupControl.name);
         popupControl.setSelectedGame(selectedGame);
         popupControl.showPopup();

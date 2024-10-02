@@ -8,9 +8,8 @@ public class NewBehaviourScript : MonoBehaviour
     public string sceneName;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Enter is pressed");
            SceneManager.LoadScene("GameSelectScene");
         }
     }

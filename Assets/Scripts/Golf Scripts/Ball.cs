@@ -11,7 +11,7 @@ public class Ball : MonoBehaviour
     public LogicScript logic;
     public GameObject golfBallIndicator;
     public AudioSource wallSound;
-    private float forceMulitplyer = 5f;
+    private float forceMulitplyer = 2f;
     private Rigidbody2D rb;
     private Vector2 startMousePos;
     private Vector2 endMousePos;

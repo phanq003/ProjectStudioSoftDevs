@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb6245db05a79fd4487e2befe91662ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previousScene: GameSelectScrene
+  previousScene: GameSelectScene
 --- !u!114 &150320066
 MonoBehaviour:
   m_ObjectHideFlags: 0

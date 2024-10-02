@@ -11,7 +11,7 @@ public class NewBehaviourScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             Debug.Log("Enter is pressed");
-           SceneManager.LoadScene(sceneName);
+           SceneManager.LoadScene("GameSelectScene");
         }
     }
 

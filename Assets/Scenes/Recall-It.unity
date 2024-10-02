@@ -1186,6 +1186,8 @@ MonoBehaviour:
   resultComment: {fileID: 1046359793}
   health:
   - {fileID: 1273622254}
+  - {fileID: 1273622254}
+  - {fileID: 1273622254}
   pauseButton: {fileID: 1635023927}
   pauseGameUI:
   - {fileID: 1899367238}

@@ -1241,7 +1241,7 @@ MonoBehaviour:
   gamePosCentre: {x: 0, y: 0, z: 0}
   gamePosRight: {x: 4, y: 0, z: 0}
   beep: {fileID: 1669476790}
-  confirm: {fileID: 736309134}
+  select: {fileID: 736309134}
 --- !u!4 &881864549
 Transform:
   m_ObjectHideFlags: 0

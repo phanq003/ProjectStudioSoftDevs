@@ -19,6 +19,8 @@ public class ChangeGamesScript : MonoBehaviour
 
     public AudioSource beep;
     public AudioSource select;
+    private bool isFestive = FestiveManager.instance.isFestive;
+    public List<AudioSource> audioSources = new List<AudioSource>();
     private List<string> gameNames = new List<string>();
    
 
@@ -35,6 +37,11 @@ public class ChangeGamesScript : MonoBehaviour
         gameNames.Add("Recall It");
         gameNames.Add("Mini Golf");
         gameNames.Add("Bingo");
+        
+    }
+    void Update()
+    {
+        
         
     }
     void Start()
@@ -106,10 +113,23 @@ public class ChangeGamesScript : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         sendToInstructions();
     }
-
+    private void playRandom()
+    {
+        System.Random rand = new System.Random();
+        int num = rand.Next(0, audioSources.Count - 1);
+        audioSources[num].Play();
+    }
     private void displayGames(){
         //Hiding and unhiding neccasary games
-        beep.Play();
+        isFestive = FestiveManager.instance.isFestive;
+        if (!isFestive)
+        {
+            beep.Play();
+        }
+        else
+        {
+            playRandom();
+        }
         for (int i = 0; i < miniGames.Length; i++){
             if (i == currentGame || i == (currentGame + 1) % miniGames.Length || i == currentGame-1){ // Checks for the 3 games being displayed
               miniGames[i].SetActive(true);

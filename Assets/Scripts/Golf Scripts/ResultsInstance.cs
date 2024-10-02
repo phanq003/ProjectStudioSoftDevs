@@ -33,7 +33,7 @@ public class ResultsInstance : MonoBehaviour
     public void exitResults()
     {
         Results.SetActive(false);
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("GameSelectScene");
         //go back to game select
     }
 }

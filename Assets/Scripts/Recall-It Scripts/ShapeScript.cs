@@ -39,4 +39,10 @@ public class ShapeScript : MonoBehaviour
     {
         return colour;
     }
+
+    public void setSprite(Sprite sprite)
+    {
+        SpriteRenderer shapeSpriteRenderer = GetComponent<SpriteRenderer>();
+        shapeSpriteRenderer.sprite = sprite;
+    }
 }

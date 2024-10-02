@@ -18,6 +18,10 @@ public class ShapeManagerScript : MonoBehaviour
     private bool isRecalling;
 
     public AudioSource beepSource;
+
+    //Festive Switching
+    public Sprite[] normalSprite;
+    public Sprite[] festiveSprite;
     
     // Start is called before the first frame update
     void Start()
@@ -28,6 +32,7 @@ public class ShapeManagerScript : MonoBehaviour
         isRecalling = true;
         MaxRecallInstance = 3;
         recallInstance = 1;
+        setTheme(FestiveManager.instance.isFestive);
         
     }
 
@@ -125,5 +130,27 @@ public class ShapeManagerScript : MonoBehaviour
     public List<GameObject> getUsedShapes()
     {
         return usedShapes;
+    }
+
+    public void setTheme(bool isFestive)
+    {
+        if (isFestive)
+        {
+            for (int index = 0; index < allShapes.Length; index++)
+            {
+                GameObject currentShape = allShapes[index];
+                ShapeScript currentShapeScript = currentShape.GetComponent<ShapeScript>();
+                currentShapeScript.setSprite(festiveSprite[index]);
+            }
+        }
+        else
+        {
+            for (int index = 0; index < allShapes.Length; index++)
+            {
+                GameObject currentShape = allShapes[index];
+                ShapeScript currentShapeScript = currentShape.GetComponent<ShapeScript>();
+                currentShapeScript.setSprite(normalSprite[index]);
+            }
+        }
     }
 }

@@ -4019,6 +4019,26 @@ MonoBehaviour:
   recallDelay: 3
   hideDelay: 2
   beepSource: {fileID: 1734497226}
+  normalSprite:
+  - {fileID: 21300000, guid: a74284cfd71f3ee43be63014221354ca, type: 3}
+  - {fileID: 21300000, guid: 566f2927f8a695a428a90dde5d4a145b, type: 3}
+  - {fileID: 21300000, guid: ae5c58ed57462684e98baf8547533f3c, type: 3}
+  - {fileID: 21300000, guid: b618ded8fa372fa46b7c4e0caa80b0b7, type: 3}
+  - {fileID: 21300000, guid: c0df01dc6ab9580468141ea8b341a62f, type: 3}
+  - {fileID: 21300000, guid: ec394eb5592ae18448c22be0d82132fa, type: 3}
+  - {fileID: 21300000, guid: a4528909d43fd3545bee1e45d7ebd8f6, type: 3}
+  - {fileID: 21300000, guid: bab004549dc07c7498711fc12ec836ce, type: 3}
+  - {fileID: 21300000, guid: b4a3c6560bcd57b4899b4144177841a0, type: 3}
+  festiveSprite:
+  - {fileID: 21300000, guid: 1fa62bb181ddcff4fb01b59c12834799, type: 3}
+  - {fileID: 21300000, guid: b5181d773ad70dc4b8d9bc275ffb6d8e, type: 3}
+  - {fileID: 21300000, guid: c83189cef4a55a84f962feef10267b10, type: 3}
+  - {fileID: 21300000, guid: cac86d9f4a39054499ad0c8d8d69ec56, type: 3}
+  - {fileID: 21300000, guid: 81f0bf63280e8f64b8faaacb4a4caf3e, type: 3}
+  - {fileID: 21300000, guid: 270e7b53563cb3347ad9305ac5e9eda4, type: 3}
+  - {fileID: 21300000, guid: 5ef7fe222c37b2a4bb3176b82364a90b, type: 3}
+  - {fileID: 21300000, guid: af7ce208730145a4db2b08bc854e7689, type: 3}
+  - {fileID: 21300000, guid: 5472d77cb08064444963993729094f73, type: 3}
 --- !u!1 &1679623757
 GameObject:
   m_ObjectHideFlags: 0

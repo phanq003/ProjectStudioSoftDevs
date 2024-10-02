@@ -8,7 +8,6 @@ using System.Linq;
 using System.Diagnostics;
 using System;
 using UnityEngine.SocialPlatforms.Impl;
-using UnityEditor.SearchService;
 
 public class LogicScript : MonoBehaviour
 {

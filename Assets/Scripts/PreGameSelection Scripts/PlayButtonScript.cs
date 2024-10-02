@@ -8,6 +8,6 @@ public class PlayButtonScript : MonoBehaviour
     public string nextScene;
     public void play()
     {
-        SceneManager.LoadScene("Whack-A-Mole"); //insert game scene here
+        SceneManager.LoadScene(nextScene); //insert game scene here
     }
 }

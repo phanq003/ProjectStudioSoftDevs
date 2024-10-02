@@ -17,6 +17,8 @@ public class ChangeGamesScript : MonoBehaviour
     public Vector3 gamePosCentre = new Vector3(0, 0, 0);
     public Vector3 gamePosRight = new Vector3(3.6f, 0, 0);
 
+    public AudioSource beep;
+    public AudioSource confirm;
     private List<string> gameNames = new List<string>();
    
 
@@ -58,8 +60,10 @@ public class ChangeGamesScript : MonoBehaviour
     }
 
     public void onSelectGame(){
+        confirm.Play();
         selectedGame = miniGames[currentGame];
         sendToInstructions();
+        
         //showPopup(); //TODO CHANGEEEEEEEEEEE!!
 
     }
@@ -98,6 +102,7 @@ public class ChangeGamesScript : MonoBehaviour
 
     private void displayGames(){
         //Hiding and unhiding neccasary games
+        beep.Play();
         for (int i = 0; i < miniGames.Length; i++){
             if (i == currentGame || i == (currentGame + 1) % miniGames.Length || i == currentGame-1){ // Checks for the 3 games being displayed
               miniGames[i].SetActive(true);

@@ -7,7 +7,7 @@ public class FestiveManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public static FestiveManager instance { get; private set; } //Singleton so its constant across scenes
-    public bool festiveMode = false;
+    public bool isFestive = false;
 
     void Awake(){
         if (instance != null && instance != this){ //Singleton Pattern
@@ -31,6 +31,6 @@ public class FestiveManager : MonoBehaviour
     }
 
     public void SetTheme(bool themeSet) {
-        festiveMode = themeSet;
+        isFestive = themeSet;
     }
 }

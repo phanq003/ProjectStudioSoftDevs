@@ -1243,6 +1243,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   themeToggle: {fileID: 778651778}
+  imageRenderers:
+  - {fileID: 98605442}
+  - {fileID: 182450066}
+  - {fileID: 1840386844}
+  normalSprites:
+  - {fileID: 21300000, guid: 80bce22008a2c9748a8386582b8cb008, type: 3}
+  - {fileID: 21300000, guid: 755e4d841f198fd4bb809711103c05ec, type: 3}
+  - {fileID: 21300000, guid: 3b84bf35fa7f7244ea4850d9d65cbec8, type: 3}
+  festiveSprites:
+  - {fileID: 21300000, guid: a431908417c6276479cfac410f70506c, type: 3}
+  - {fileID: 21300000, guid: 3d3fa89773ea362449378bb5c8718da0, type: 3}
+  - {fileID: 21300000, guid: 8866fcbfe2038864b8a5ea33265422de, type: 3}
 --- !u!4 &1387732670
 Transform:
   m_ObjectHideFlags: 0
@@ -1355,7 +1367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fe8f6aa4bb75d143a7ebbe9f20ff640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  festiveMode: 0
+  isFestive: 0
 --- !u!4 &1449380728
 Transform:
   m_ObjectHideFlags: 0

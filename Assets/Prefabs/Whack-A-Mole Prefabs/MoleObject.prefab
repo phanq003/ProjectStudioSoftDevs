@@ -135,6 +135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moleHit: {fileID: 5999576755733961427, guid: eb4521bd6750214428ca5415de8481d1, type: 3}
+  normalSprite: {fileID: 21300000, guid: 155bab8f801f2d542898a0f1d29ecaf7, type: 3}
+  christmasSprite: {fileID: 21300000, guid: 07e5665971e8b42499cf40beabe0a7bf, type: 3}
 --- !u!95 &7266862350026965642
 Animator:
   serializedVersion: 5

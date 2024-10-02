@@ -10,12 +10,21 @@ public class MoleObjectScript : MonoBehaviour
     public GameObject moleHit;
     private CursorManagerScript cursorManager;
 
+//For festive switching
+    public Sprite normalSprite;
+    public Sprite christmasSprite;
+    private SpriteRenderer spriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>();
         moleHit = Instantiate(moleHit, gameObject.transform.position, transform.rotation);
         cursorManager = GameObject.FindGameObjectWithTag("CursorManager").GetComponent<CursorManagerScript>();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        setTheme(FestiveManager.instance.isFestive);
+        
     }
 
     // Update is called once per frame
@@ -59,5 +68,16 @@ public class MoleObjectScript : MonoBehaviour
     public void destroyMole()
     {
         Destroy(gameObject);
+    }
+
+    public void setTheme(bool isFestive){
+         if (isFestive == true)
+        {
+            spriteRenderer.sprite = christmasSprite; 
+        }
+        else
+        {
+            spriteRenderer.sprite = normalSprite; 
+        }
     }
 }

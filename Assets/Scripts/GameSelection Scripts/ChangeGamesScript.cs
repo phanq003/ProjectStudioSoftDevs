@@ -77,19 +77,19 @@ public class ChangeGamesScript : MonoBehaviour
                     SceneManager.LoadScene("WhackAMoleInstructions");
                     break;
                 }
-            case "Recall it":
+            case "Recall It":
                 {
-                    SceneManager.LoadScene("");
+                    SceneManager.LoadScene("RecallItInstructions");
                     break;
                 }
             case "Mini Golf":
                 {
-                    SceneManager.LoadScene("");
+                    SceneManager.LoadScene("MiniGolfInstructions");
                     break;
                 }
             case "Bingo":
                 {
-                SceneManager.LoadScene("");
+                SceneManager.LoadScene("BingoInstructions");
                 break;
                 }
         }

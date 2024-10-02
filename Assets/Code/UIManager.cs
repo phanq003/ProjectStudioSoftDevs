@@ -116,6 +116,17 @@ public class UIManager : MonoBehaviour
             if (score - rank == scoreForPar)
             {
                 string rankName = Enum.GetName(typeof(Rank), rank);
+                if (rankName == "DoubleBogey" || rankName == "TripleBogey")
+                {
+                    if (rankName == "DoubleBogey")
+                    {
+                        rankName = "Double Bogey";
+                    }
+                    else
+                    {
+                        rankName = "Triple Bogey";
+                    }
+                }
                 return rankName; 
             }
 

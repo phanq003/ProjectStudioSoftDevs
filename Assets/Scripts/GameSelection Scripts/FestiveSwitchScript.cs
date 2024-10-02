@@ -41,11 +41,16 @@ public class FestiveModeScript : MonoBehaviour
             for (int i = 0; i < imageRenderers.Length; i++){
                 imageRenderers[i].sprite = festiveSprites[i];
             }
+
+            themeToggle.isOn = true;
         }
         else{
             for (int i = 0; i < imageRenderers.Length; i++){
                 imageRenderers[i].sprite = normalSprites[i];
             }
+            
+            themeToggle.isOn = false;
+
         }
     }
     //

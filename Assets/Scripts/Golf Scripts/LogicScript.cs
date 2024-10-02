@@ -27,20 +27,17 @@ public class LogicScript : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
     {
+        playerHoleValue = new List<int>(numOfHoles);
         if (scene.name == "Hole1")
         {
-            playerHoleValue = new List<int>(numOfHoles);
             scoreValue.Score = 0;
             scoreValue.PreviousHoleScore = 0;
             scoreValue.HoleCounter = 1;
 
-            for (int holeValue = 0; holeValue < numOfHoles; holeValue++)
-            {
-                playerHoleValue.Add(0);
-                playerHoleValue[holeValue] = 0;
-            }
+            this.resetVal();
+            scoreValue.PlayerScores = playerHoleValue;
         }
         else
         {
@@ -48,7 +45,7 @@ public class LogicScript : MonoBehaviour
             previousHoleScore = scoreValue.PreviousHoleScore;
         }
         updateScore();
-        
+
     }
     public void Awake()
     {
@@ -60,13 +57,14 @@ public class LogicScript : MonoBehaviour
     public void Start()
     {
         updateScore();
-        
+
     }
 
     [ContextMenu("Add Stroke")]
     public void addStroke()
     {
-        if (checkForTurnCap() == true) {
+        if (checkForTurnCap() == true)
+        {
             playerTurnExceeded = true;
             manageNextScene();
         }
@@ -85,8 +83,9 @@ public class LogicScript : MonoBehaviour
     }
     public void manageNextScene()
     {
-        try { loadHole(scoreValue.HoleCounter, scoreValue.HoleCounter); }
-        catch { loadEnding(scoreValue.HoleCounter); }
+        //try { 
+        loadHole(scoreValue.HoleCounter, scoreValue.HoleCounter);
+        //} catch { loadEnding(scoreValue.HoleCounter); }
     }
     public void updateScore()
     {
@@ -113,18 +112,33 @@ public class LogicScript : MonoBehaviour
         {
             loadEnding(HoleNum);
         }
-        
+
+    }
+    public void resetVal()
+    {
+        for (int holeValue = 0; holeValue < numOfHoles; holeValue++)
+        {
+            playerHoleValue.Add(0);
+            playerHoleValue[holeValue] = 0;
+        }
     }
     public int updateScores(int HoleNum)
     {
         int scoreThisRound = scoreValue.Score - previousHoleScore;
+        if (playerHoleValue.Count() == 0 && scoreValue.HoleCounter == 1)
+        {
+            this.resetVal();
+            playerHoleValue[0] = previousHoleScore;
+        }
         try
         {
+
             playerHoleValue[HoleNum - 1] = scoreThisRound;
         }
         catch
         {
-            playerHoleValue.Insert(HoleNum -1, scoreThisRound); 
+            playerHoleValue.Add(scoreThisRound);
+            //playerHoleValue.Insert(HoleNum -1, scoreThisRound); 
         }
         previousHoleScore = scoreValue.Score;
         scoreValue.PreviousHoleScore = previousHoleScore;

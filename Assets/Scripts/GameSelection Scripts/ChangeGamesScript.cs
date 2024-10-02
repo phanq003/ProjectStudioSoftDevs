@@ -62,13 +62,14 @@ public class ChangeGamesScript : MonoBehaviour
     public void onSelectGame(){
         confirm.Play();
         selectedGame = miniGames[currentGame];
-        sendToInstructions();
-        
+        StartCoroutine(Delay());
+
         //showPopup(); //TODO CHANGEEEEEEEEEEE!!
 
     }
     private void sendToInstructions()
     {
+        
         switch (selectedGame.name)
             { 
             case "Whack A Mole":
@@ -98,6 +99,12 @@ public class ChangeGamesScript : MonoBehaviour
         Debug.Log(popupControl.name);
         popupControl.setSelectedGame(selectedGame);
         popupControl.showPopup();
+    }
+
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(1.0f);
+        sendToInstructions();
     }
 
     private void displayGames(){

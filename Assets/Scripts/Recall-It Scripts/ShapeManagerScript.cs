@@ -16,6 +16,8 @@ public class ShapeManagerScript : MonoBehaviour
     [SerializeField] private float hideDelay;
     private int recallCount;
     private bool isRecalling;
+
+    public AudioSource beepSource;
     
     // Start is called before the first frame update
     void Start()
@@ -41,6 +43,7 @@ public class ShapeManagerScript : MonoBehaviour
             startRecall();
             recallCount += 1;
             duration = 0f;
+            beepSource.Play();
         }
         else if (isRecalling)
         {

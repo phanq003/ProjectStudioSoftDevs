@@ -37,15 +37,27 @@ public class PopupControl : MonoBehaviour
         gameObject.SetActive(true);
         gameSelectionManager.SetActive(false);
         GameDescriptionManager gameDescriptionManagerScript = gameDescriptionManager.GetComponent<GameDescriptionManager>();
+        GameObject game;
         switch(name)
         {
-            case "GameTemp 1":
-                GameObject game = GameObject.FindGameObjectWithTag("WhackAMole");
-                gameDescriptionManagerScript.gameDetails = game;
-                gameDescriptionManagerScript.setUpImage();
+            case "Whack A Mole":
+                game = GameObject.FindGameObjectWithTag("WhackAMole");
+                
                 //manager.setupImage()
-            break;
+                break;
+
+            // case "Recall It":
+            //     break;
+            // case "Mini Golf":
+            //     break;
+            // case "Bingo":
+            //     break;
+            default:
+                game = null;
+                break;
         }
+        gameDescriptionManagerScript.gameDetails = game; //Need to just assign all cases to fix error
+                gameDescriptionManagerScript.setUpImage();
         //TODO show smth depending on a var in the gameObj
     }
 

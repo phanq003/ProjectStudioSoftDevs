@@ -91,7 +91,11 @@ public class LogicScript : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name != "Results")
         {
-            strokeText.text = scoreValue.Score.ToString();
+            if (strokeText != null)
+            {
+                strokeText.text = scoreValue.Score.ToString();
+            }
+            
         }
     }
 
@@ -107,9 +111,11 @@ public class LogicScript : MonoBehaviour
             int scoreThisRound = updateScores(HoleNum);
             TheUIManager.calculateShots(scoreThisRound);
             TheUIManager.nextMap(scenes[sceneNumber]);
+            UnityEngine.Debug.Log("numOfHoles" + HoleNum);
         }
         else
         {
+            UnityEngine.Debug.Log("THISWASCALLED");
             loadEnding(HoleNum);
         }
 

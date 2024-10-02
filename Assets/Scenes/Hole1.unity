@@ -1254,7 +1254,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_TargetEye: 0
+  m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
@@ -1947,7 +1947,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -944103055, guid: ed20bc93eacd4b9499a81951000523c9, type: 3}
+  m_Sprite: {fileID: -1234777906, guid: ed20bc93eacd4b9499a81951000523c9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6697,7 +6697,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -835494629, guid: ed20bc93eacd4b9499a81951000523c9, type: 3}
+  m_Sprite: {fileID: 1445954310, guid: ed20bc93eacd4b9499a81951000523c9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

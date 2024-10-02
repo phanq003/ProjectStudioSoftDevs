@@ -95,6 +95,7 @@ public class UIManager : MonoBehaviour
     }
     public void displayResults()
     {
+        UnityEngine.Debug.Log("THIS WAS CALLED FOR SOME REASON");
         string newText = "";
         int counter = 0;
         List<int> theScores = ScoreManager.PlayerScores;

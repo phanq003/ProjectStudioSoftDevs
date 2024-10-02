@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.VFX;
 
 public class ChangeGamesScript : MonoBehaviour
 {
@@ -14,6 +17,9 @@ public class ChangeGamesScript : MonoBehaviour
     public Vector3 gamePosCentre = new Vector3(0, 0, 0);
     public Vector3 gamePosRight = new Vector3(3.6f, 0, 0);
 
+    private List<string> gameNames = new List<string>();
+   
+
     void Awake() 
     {
         Debug.Log("STARTS");
@@ -22,6 +28,12 @@ public class ChangeGamesScript : MonoBehaviour
         Debug.Log("START" + popupControl.name);
         
         displayGames();
+
+        gameNames.Add("Whack A Mole");
+        gameNames.Add("Recall It");
+        gameNames.Add("Mini Golf");
+        gameNames.Add("Bingo");
+        
     }
     void Start()
     {
@@ -47,9 +59,37 @@ public class ChangeGamesScript : MonoBehaviour
 
     public void onSelectGame(){
         selectedGame = miniGames[currentGame];
-        showPopup(); //TODO CHANGEEEEEEEEEEE!!
-    }
+        sendToInstructions();
+        //showPopup(); //TODO CHANGEEEEEEEEEEE!!
 
+    }
+    private void sendToInstructions()
+    {
+        switch (selectedGame.name)
+            { 
+            case "Whack A Mole":
+                {
+                    SceneManager.LoadScene("WhackAMoleInstructions");
+                    break;
+                }
+            case "Recall it":
+                {
+                    SceneManager.LoadScene("");
+                    break;
+                }
+            case "Mini Golf":
+                {
+                    SceneManager.LoadScene("");
+                    break;
+                }
+            case "Bingo":
+                {
+                SceneManager.LoadScene("");
+                break;
+                }
+        }
+
+    }
     private void showPopup(){ 
         Debug.Log(popupControl.name);
         popupControl.setSelectedGame(selectedGame);

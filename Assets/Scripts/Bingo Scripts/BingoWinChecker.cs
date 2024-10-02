@@ -5,6 +5,8 @@ using BingoCard;
 using JetBrains.Annotations;
 using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class BingoWinChecker : MonoBehaviour
 {
@@ -65,7 +67,10 @@ Still needs to be done:
             }
 
             if (isBingo){
-                 winOverlay.SetActive(true);
+                Debug.Log("Is Bingo");
+                winOverlay.SetActive(true);
+                Time.timeScale = 0.0f;
+
                 return true;
             }
         }
@@ -129,5 +134,11 @@ Still needs to be done:
             diagonalPattern2.Add(new Vector2Int(i, gridSize - i - 1)); //gridSize - i - 1 starts from right side of grid to work inwards, -1 because index starts at 0 
         }
         winningPatterns.Add(diagonalPattern2);
+    }
+
+     public void quitGame()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene("GameSelectScene");
     }
 }

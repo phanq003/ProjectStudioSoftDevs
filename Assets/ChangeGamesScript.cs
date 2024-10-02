@@ -10,8 +10,8 @@ public class ChangeGamesScript : MonoBehaviour
 
     public GameObject selectedGame; //Stores game to pass to popup
 
-public GameObject popup;
-    public PopupControl popupControl;
+// public GameObject popup;
+    // public PopupControl popupControl;
 
     public Vector3 gamePosLeft = new Vector3(-3.6f, 0, 0);
     public Vector3 gamePosCentre = new Vector3(0, 0, 0);
@@ -22,15 +22,15 @@ public GameObject popup;
     void Awake() 
     {
         Debug.Log("STARTS");
-        popup = GameObject.FindGameObjectWithTag("PopupController");
-        popupControl = popup.GetComponent<PopupControl>();
-        Debug.Log("START" + popupControl.name);
+        // popup = GameObject.FindGameObjectWithTag("PopupController");
+        // popupControl = popup.GetComponent<PopupControl>();
+        // Debug.Log("START" + popupControl.name);
         
         displayGames();
     }
     void Start()
     {
-        popup.SetActive(false);
+        // popup.SetActive(false);
     }
     public void nextGame(){
         currentGame = (currentGame + 1) % miniGames.Length; //Modulo allows for it to loop back to 0 once limit reached
@@ -56,9 +56,9 @@ public GameObject popup;
     }
 
     private void showPopup(){ 
-        Debug.Log(popupControl.name);
-        popupControl.setSelectedGame(selectedGame);
-        popupControl.showPopup();
+        // Debug.Log(popupControl.name);
+        // popupControl.setSelectedGame(selectedGame);
+        // popupControl.showPopup();
     }
 
     private void displayGames(){

@@ -26,7 +26,7 @@ Still needs to be done:
     public GameObject falsiePopup;
 
     public AudioSource bingo;
-
+    public AudioSource buzzer;
 
     // private List<CellData> clickedCellsList = new List<CellData>();
     private int gridSize;
@@ -77,7 +77,7 @@ Still needs to be done:
                 return true;
             }
         }
-
+        buzzer.Play();
         Debug.Log("No Bingo");
         StartCoroutine(FalsieDisplay());
         return false;

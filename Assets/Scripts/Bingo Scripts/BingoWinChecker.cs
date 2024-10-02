@@ -25,6 +25,8 @@ Still needs to be done:
     public GameObject winOverlay;
     public GameObject falsiePopup;
 
+    public AudioSource bingo;
+
 
     // private List<CellData> clickedCellsList = new List<CellData>();
     private int gridSize;
@@ -67,6 +69,7 @@ Still needs to be done:
             }
 
             if (isBingo){
+                bingo.Play();  
                 Debug.Log("Is Bingo");
                 winOverlay.SetActive(true);
                 Time.timeScale = 0.0f;

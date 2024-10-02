@@ -18,7 +18,7 @@ public class ChangeGamesScript : MonoBehaviour
     public Vector3 gamePosRight = new Vector3(3.6f, 0, 0);
 
     public AudioSource beep;
-    public AudioSource confirm;
+    public AudioSource select;
     private List<string> gameNames = new List<string>();
    
 
@@ -60,11 +60,11 @@ public class ChangeGamesScript : MonoBehaviour
     }
 
     public void onSelectGame(){
-        confirm.Play();
+        
         selectedGame = miniGames[currentGame];
-        StartCoroutine(Delay());
+        select.Play();
 
-        //showPopup(); //TODO CHANGEEEEEEEEEEE!!
+        StartCoroutine(Delay());
 
     }
     private void sendToInstructions()

@@ -29,6 +29,7 @@ public class ChangeGamesScript : MonoBehaviour
         Debug.Log("STARTS");
         popup = GameObject.FindGameObjectWithTag("PopupController");
         popupControl = popup.GetComponent<PopupControl>();
+        popup.SetActive(false);
         Debug.Log("START" + popupControl.name);
         
         displayGames();

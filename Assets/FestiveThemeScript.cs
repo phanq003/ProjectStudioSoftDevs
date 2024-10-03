@@ -7,10 +7,11 @@ using UnityEngine.UI;
 
 public class FestiveThemeScript : MonoBehaviour
 {
-    public SpriteRenderer[] imageRenderers;  
+    public SpriteRenderer[] imageRenderers; 
     public Sprite[] normalSprites;
     public Sprite[] festiveSprites;
 
+    public Transform ballTransform = null; 
     public ParticleSystem snow = null;
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,10 @@ public class FestiveThemeScript : MonoBehaviour
             for (int i = 0; i < imageRenderers.Length; i++){
                 imageRenderers[i].sprite = festiveSprites[i];
             }
+            if (ballTransform != null){
+                ballTransform.transform.localScale = new Vector3(0.2f,0.2f,1);
+            }
+
             if (snow != null && !snow.isPlaying){
                 snow.Play();
             }
@@ -33,6 +38,10 @@ public class FestiveThemeScript : MonoBehaviour
             for (int i = 0; i < imageRenderers.Length; i++){
                 imageRenderers[i].sprite = normalSprites[i];
             }
+            if (ballTransform != null){
+                ballTransform.transform.localScale = new Vector3(0.05f,0.05f,1);
+            }
+
              if (snow != null && snow.isPlaying){
                 snow.Stop();
             }
